@@ -35,18 +35,24 @@ export default function FooterSection() {
               Taste the innovation. Enjoy More.
             </p>
             <div className="flex gap-3">
-              {socialLinks.map((social) => (
-                <a
-                  key={social.label}
-                  href={social.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-10 h-10 glass-card rounded-full flex items-center justify-center hover:bg-brand-orange/20 hover:text-brand-orange transition-all text-zinc-400"
-                  aria-label={social.label}
-                >
-                  <social.icon className="w-4 h-4" />
-                </a>
-              ))}
+              <a
+                href="https://instagram.com/justwaffles"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-10 h-10 glass-card rounded-full flex items-center justify-center hover:bg-brand-orange/20 hover:text-brand-orange transition-all text-zinc-400 text-xs font-bold"
+                aria-label="Instagram"
+              >
+                IG
+              </a>
+              <a
+                href="https://facebook.com/justwaffles"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-10 h-10 glass-card rounded-full flex items-center justify-center hover:bg-brand-turquoise/20 hover:text-brand-turquoise transition-all text-zinc-400 text-xs font-bold"
+                aria-label="Facebook"
+              >
+                FB
+              </a>
             </div>
           </div>
 
