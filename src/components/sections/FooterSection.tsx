@@ -8,10 +8,6 @@ const quickLinks = [
   { label: "Contact", href: "#contact" },
 ];
 
-const socialLinks = [
-  { icon: () => <span className="text-xs font-bold">IG</span>, href: "https://instagram.com/justwaffles", label: "Instagram" },
-  { icon: () => <span className="text-xs font-bold">FB</span>, href: "https://facebook.com/justwaffles", label: "Facebook" },
-];
 
 export default function FooterSection() {
   const scrollToTop = () => window.scrollTo({ top: 0, behavior: "smooth" });
