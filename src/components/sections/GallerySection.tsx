@@ -5,15 +5,18 @@ import brownie from "@/assets/brownielicious.jpg";
 import blueberry from "@/assets/blueberry-wich.jpg";
 import almond from "@/assets/almond-sundae.jpg";
 import kitkat from "@/assets/kitkat-wich.jpg";
-import heroWaffle from "@/assets/hero-waffle.jpg";
+import gallery1 from "@/assets/gallery-1.jpg";
+import gallery2 from "@/assets/gallery-2.jpg";
+import gallery3 from "@/assets/gallery-3.jpg";
+import gallery4 from "@/assets/gallery-4.jpg";
 
 const galleryImages = [
-  { src: brownie, alt: "Brownielicious Waffy Tree close-up", span: "col-span-2 row-span-2" },
-  { src: blueberry, alt: "Blueberry Waffy Wich preparation", span: "col-span-1 row-span-1" },
-  { src: almond, alt: "Almond Bubble Sundae in glass bowl", span: "col-span-1 row-span-1" },
-  { src: kitkat, alt: "KitKat Wonder Waffy Wich", span: "col-span-1 row-span-2" },
-  { src: heroWaffle, alt: "Fresh waffle with chocolate drizzle", span: "col-span-2 row-span-1" },
-  { src: brownie, alt: "Store atmosphere", span: "col-span-1 row-span-1" },
+  { src: gallery1, alt: "Chocolate drizzle on fresh waffle", span: "col-span-2 row-span-2" },
+  { src: gallery2, alt: "Students enjoying waffles at Just Waffles", span: "col-span-1 row-span-1" },
+  { src: gallery3, alt: "Premium Just Waffles store interior", span: "col-span-1 row-span-1" },
+  { src: almond, alt: "Almond Bubble Sundae", span: "col-span-1 row-span-2" },
+  { src: gallery4, alt: "Colorful bubble waffle toppings", span: "col-span-2 row-span-1" },
+  { src: brownie, alt: "Brownielicious Waffy Tree", span: "col-span-1 row-span-1" },
 ];
 
 export default function GallerySection() {

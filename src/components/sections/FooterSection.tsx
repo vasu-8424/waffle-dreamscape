@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { ArrowUp, ExternalLink } from "lucide-react";
+import { ArrowUp } from "lucide-react";
 
 const quickLinks = [
   { label: "Home", href: "#" },
