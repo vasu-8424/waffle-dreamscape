@@ -73,6 +73,7 @@ function Index() {
           <Suspense fallback={<div className="min-h-screen bg-luxury-black" />}>
             <main>
               <HeroSection />
+              <ScrollStorySection />
               <AboutSection />
               <WhySection />
               <SignatureSection />
@@ -81,6 +82,7 @@ function Index() {
               <LocationsSection />
               <GallerySection />
               <TestimonialsSection />
+              <SocialSection />
               <ContactSection />
               <FooterSection />
             </main>
