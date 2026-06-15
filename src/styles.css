@@ -33,8 +33,22 @@
   --color-ring: var(--ring);
   --color-brand-orange: var(--brand-orange);
   --color-brand-turquoise: var(--brand-turquoise);
+  --color-brand-mint: var(--brand-mint);
+  --color-brand-chocolate: var(--brand-chocolate);
   --color-luxury-black: var(--luxury-black);
   --color-luxury-white: var(--luxury-white);
+  --color-black: var(--luxury-black);
+  --color-white: var(--luxury-white);
+  --color-zinc-100: #382A1C;
+  --color-zinc-200: #44352A;
+  --color-zinc-300: #57463A;
+  --color-zinc-400: #6B574A;
+  --color-zinc-500: #7E695B;
+  --color-zinc-600: #917C6E;
+  --color-zinc-700: #A59081;
+  --color-zinc-800: #EADFC9;
+  --color-zinc-900: #F3EDE0;
+  --color-zinc-950: #FFFDF9;
   --font-display: var(--font-display);
   --font-sans: var(--font-sans);
   --font-mono: var(--font-mono);
@@ -42,60 +56,75 @@
 
 :root {
   --radius: 0.625rem;
-  --brand-orange: oklch(0.68 0.20 55);
-  --brand-turquoise: oklch(0.74 0.12 195);
-  --luxury-black: oklch(0.05 0 0);
-  --luxury-white: oklch(1 0 0);
-  --background: oklch(0.05 0 0);
-  --foreground: oklch(0.95 0 0);
-  --card: oklch(0.08 0 0);
-  --card-foreground: oklch(0.95 0 0);
-  --popover: oklch(0.08 0 0);
-  --popover-foreground: oklch(0.95 0 0);
-  --primary: oklch(0.68 0.20 55);
-  --primary-foreground: oklch(0.05 0 0);
-  --secondary: oklch(0.12 0.01 260);
-  --secondary-foreground: oklch(0.95 0 0);
-  --muted: oklch(0.15 0.01 260);
-  --muted-foreground: oklch(0.60 0.02 260);
-  --accent: oklch(0.74 0.12 195);
-  --accent-foreground: oklch(0.05 0 0);
+  --brand-orange: #E37A24;
+  --brand-turquoise: #2FA69A;
+  --brand-mint: #DCEFEF;
+  --brand-chocolate: #423724;
+  
+  --luxury-black: #ffffff; /* Background white */
+  --luxury-white: #2C1E14; /* Text dark chocolate brown */
+  
+  --background: var(--luxury-black);
+  --foreground: var(--luxury-white);
+  
+  --card: #FFFDF9;
+  --card-foreground: var(--luxury-white);
+  
+  --popover: #FFFDF9;
+  --popover-foreground: var(--luxury-white);
+  
+  --primary: var(--brand-orange);
+  --primary-foreground: #FFFDF9;
+  
+  --secondary: #F6F1E5;
+  --secondary-foreground: var(--luxury-white);
+  
+  --muted: #F6F1E5;
+  --muted-foreground: #7E695B;
+  
+  --accent: var(--brand-turquoise);
+  --accent-foreground: #FFFDF9;
+  
   --destructive: oklch(0.577 0.245 27.325);
   --destructive-foreground: oklch(0.984 0.003 247.858);
-  --border: oklch(1 0 0 / 8%);
-  --input: oklch(1 0 0 / 12%);
-  --ring: oklch(0.68 0.20 55);
+  
+  --border: rgba(44, 30, 20, 0.1);
+  --input: rgba(44, 30, 20, 0.14);
+  --ring: var(--brand-orange);
+  
   --font-display: "DM Serif Display", serif;
   --font-sans: "Inter", system-ui, sans-serif;
   --font-mono: "JetBrains Mono", monospace;
 }
 
 @utility glass-card {
-  background: rgba(255, 255, 255, 0.03);
+  background: rgba(255, 255, 255, 0.65);
   backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(44, 30, 20, 0.08);
+  box-shadow: 0 4px 30px rgba(44, 30, 20, 0.03);
 }
 
 @utility glass-card-strong {
-  background: rgba(255, 255, 255, 0.06);
+  background: rgba(255, 255, 255, 0.85);
   backdrop-filter: blur(24px);
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(44, 30, 20, 0.12);
+  box-shadow: 0 8px 32px rgba(44, 30, 20, 0.06);
 }
 
 @utility text-glow-orange {
-  text-shadow: 0 0 20px oklch(0.68 0.20 55 / 0.4), 0 0 40px oklch(0.68 0.20 55 / 0.2);
+  text-shadow: 0 0 20px rgba(227, 122, 36, 0.4), 0 0 40px rgba(227, 122, 36, 0.2);
 }
 
 @utility text-glow-turquoise {
-  text-shadow: 0 0 20px oklch(0.74 0.12 195 / 0.4), 0 0 40px oklch(0.74 0.12 195 / 0.2);
+  text-shadow: 0 0 20px rgba(47, 166, 154, 0.4), 0 0 40px rgba(47, 166, 154, 0.2);
 }
 
 @utility glow-border-orange {
-  box-shadow: 0 0 20px oklch(0.68 0.20 55 / 0.15), inset 0 0 20px oklch(0.68 0.20 55 / 0.05);
+  box-shadow: 0 0 20px rgba(227, 122, 36, 0.15), inset 0 0 20px rgba(227, 122, 36, 0.05);
 }
 
 @utility glow-border-turquoise {
-  box-shadow: 0 0 20px oklch(0.74 0.12 195 / 0.15), inset 0 0 20px oklch(0.74 0.12 195 / 0.05);
+  box-shadow: 0 0 20px rgba(47, 166, 154, 0.15), inset 0 0 20px rgba(47, 166, 154, 0.05);
 }
 
 @utility noise-overlay {

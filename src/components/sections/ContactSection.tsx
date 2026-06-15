@@ -78,7 +78,7 @@ export default function ContactSection() {
                 <p className="text-zinc-400 leading-relaxed mb-4">
                   No.1188, Ground Floor, 1st Cross, Ramamurthy St,
                   <br />
-                  Keerthi Layout, St Thomas Town, Kammanahalli,
+                  Keerthi Layout, St Thomas Town, Post, Kammanahalli,
                   <br />
                   Bengaluru, Karnataka 560084
                 </p>

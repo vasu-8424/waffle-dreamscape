@@ -7,11 +7,11 @@ import imgDrizzle from "@/assets/opt-0F0A9362.jpg";
 import imgServe from "@/assets/opt-0F0A9279.jpg";
 
 const stages = [
-  { title: "Flour", subtitle: "Premium quality flour, sifted to perfection", color: "#e8d5b7", image: imgFlour },
-  { title: "Batter", subtitle: "Freshly mixed, smooth as silk", color: "#f5e6d3", image: imgBatter },
-  { title: "Press", subtitle: "Golden grids form in the hot iron", color: "#d4a574", image: imgPress },
-  { title: "Drizzle", subtitle: "Rich chocolate cascades over the warm surface", color: "#8B4513", image: imgDrizzle },
-  { title: "Serve", subtitle: "Crafted fresh. Served warm. Enjoyed more.", color: "#FF7A00", image: imgServe },
+  { title: "Flour", subtitle: "Premium quality flour, sifted to perfection", color: "#5c4731", image: imgFlour },
+  { title: "Batter", subtitle: "Freshly mixed, smooth as silk", color: "#7e5b35", image: imgBatter },
+  { title: "Press", subtitle: "Golden grids form in the hot iron", color: "#E37A24", image: imgPress },
+  { title: "Drizzle", subtitle: "Rich chocolate cascades over the warm surface", color: "#423724", image: imgDrizzle },
+  { title: "Serve", subtitle: "Crafted fresh. Served warm. Enjoyed more.", color: "#2FA69A", image: imgServe },
 ];
 
 export default function ScrollStorySection() {
@@ -48,12 +48,12 @@ export default function ScrollStorySection() {
             );
           })}
           
-          {/* Immersive Dark Vignette Overlay for Premium Readability */}
-          <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/45 to-black/80 z-10" />
+          {/* Immersive Light Vignette Overlay for Premium Readability */}
+          <div className="absolute inset-0 bg-gradient-to-b from-white/80 via-white/45 to-white/80 z-10" />
           <div 
             className="absolute inset-0 z-10" 
             style={{ 
-              backgroundImage: "radial-gradient(circle at center, transparent 20%, rgba(0,0,0,0.85) 100%)" 
+              backgroundImage: "radial-gradient(circle at center, transparent 20%, rgba(255, 255, 255, 0.85) 100%)" 
             }} 
           />
         </div>
@@ -154,12 +154,12 @@ function StageTextContent({
         Stage {String(index + 1).padStart(2, "0")}
       </span>
       <h3
-        className="text-5xl sm:text-6xl md:text-8xl font-display font-extrabold mb-6 tracking-wide drop-shadow-[0_4px_12px_rgba(0,0,0,0.8)]"
+        className="text-5xl sm:text-6xl md:text-8xl font-display font-extrabold mb-6 tracking-wide drop-shadow-[0_4px_12px_rgba(255,255,255,0.85)]"
         style={{ color: stage.color }}
       >
         {stage.title}
       </h3>
-      <p className="text-zinc-200 text-base sm:text-lg md:text-2xl max-w-xl leading-relaxed font-sans font-medium drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">
+      <p className="text-zinc-100 text-base sm:text-lg md:text-2xl max-w-xl leading-relaxed font-sans font-medium drop-shadow-[0_2px_8px_rgba(255,255,255,0.8)]">
         {stage.subtitle}
       </p>
     </motion.div>

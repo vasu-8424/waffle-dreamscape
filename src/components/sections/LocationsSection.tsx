@@ -6,7 +6,7 @@ const locations = [
   {
     id: "kammanahalli",
     name: "Kammanahalli",
-    address: "No.1188, Ground Floor, 1st Cross, Ramamurthy St, Keerthi Layout, St Thomas Town, Bengaluru 560084",
+    address: "No.1188, Ground Floor, 1st Cross, Ramamurthy St, Keerthi Layout, St Thomas Town, Post, Kammanahalli, Bengaluru, Karnataka 560084",
     phone: "9980773895",
     timing: "11:00 AM – 12:00 AM",
     x: 320, // Grid coordinates matching Blr geography
@@ -135,7 +135,6 @@ export default function LocationsSection() {
                 height="100%"
                 className="absolute inset-0 border-0 transition-opacity duration-500"
                 style={{
-                  filter: "invert(90%) hue-rotate(180deg) brightness(95%) contrast(90%)",
                   opacity: 0.85,
                 }}
                 src={`https://maps.google.com/maps?q=${encodeURIComponent(activeLoc.name + " Just Waffles " + activeLoc.address)}&t=&z=15&ie=UTF8&iwloc=&output=embed`}

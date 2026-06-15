@@ -66,21 +66,49 @@ export default function SocialSection() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a
-              href="https://instagram.com/justwaffles"
+              href="https://www.instagram.com/justwaffles_enjoymore?igsh=MXZwN3V6bDVkNTk0OA=="
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center justify-center gap-2 px-8 py-3 bg-brand-orange text-white rounded-full font-medium hover:shadow-[0_0_30px_rgba(255,122,0,0.3)] transition-all"
             >
-              <span className="text-sm font-bold">IG</span>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                className="text-white"
+              >
+                <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
+                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+                <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
+              </svg>
               Follow on Instagram
             </a>
             <a
-              href="https://facebook.com/justwaffles"
+              href="https://www.facebook.com/share/18nYrz5vDp/"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center justify-center gap-2 px-8 py-3 glass-card-strong text-white rounded-full font-medium hover:bg-white/10 transition-all"
             >
-              <span className="text-sm font-bold">FB</span>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                className="text-white"
+              >
+                <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
+              </svg>
               Like on Facebook
             </a>
           </div>

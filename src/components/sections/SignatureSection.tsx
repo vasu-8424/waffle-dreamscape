@@ -1,18 +1,25 @@
 import { useRef, useState } from "react";
 import { motion, useInView, useMotionValue, useSpring, useTransform, AnimatePresence } from "framer-motion";
-import brownie from "@/assets/brownielicious.jpg";
-import blueberry from "@/assets/blueberry-wich.jpg";
-import almond from "@/assets/almond-sundae.jpg";
-import kitkat from "@/assets/kitkat-wich.jpg";
 import { Plus, Check, Star } from "lucide-react";
 
 const products = [
+  {
+    id: "almond-sundae",
+    name: "Delighted Almond Sundae",
+    desc: "Signature bubble waffle with vanilla ice cream, toasted almonds & caramel",
+    price: "₹219",
+    image: "/Delighted Almond Sundae.jpeg",
+    tag: "Premium Selection",
+    color: "orange" as const,
+    badge: "Signature",
+    rating: "5.0",
+  },
   {
     id: "brownielicious",
     name: "Brownielicious Waffy Tree",
     desc: "Layers of warm brownie chunks & crisp waffle wedges with dark chocolate drizzle",
     price: "₹189",
-    image: brownie,
+    image: "/Brownielicious Waffy Tree.jpeg",
     tag: "Best Seller",
     color: "orange" as const,
     badge: "Indulgent",
@@ -23,29 +30,18 @@ const products = [
     name: "Blueberry Waffy Wich",
     desc: "Fresh blueberry compote folded into a warm waffle sandwich with whipped cream",
     price: "₹169",
-    image: blueberry,
+    image: "/Blueberry Waffy Wich.jpeg",
     tag: "Freshly Made",
     color: "turquoise" as const,
     badge: "Fruity",
     rating: "4.8",
   },
   {
-    id: "almond",
-    name: "Delighted Almond Bubble Sundae",
-    desc: "Signature bubble waffle with vanilla ice cream, toasted almonds & caramel",
-    price: "₹219",
-    image: almond,
-    tag: "Premium Selection",
-    color: "orange" as const,
-    badge: "Signature",
-    rating: "5.0",
-  },
-  {
     id: "kitkat",
-    name: "KitKat Wonder Waffy Wich",
+    name: "Kitkat Wonder Waffy Wich",
     desc: "Crushed KitKat bars & milk chocolate ganache between golden waffles",
     price: "₹179",
-    image: kitkat,
+    image: "/Kitkat Wonder Waffy Wich.jpeg",
     tag: "Chocolate Lover",
     color: "turquoise" as const,
     badge: "Crunchy",
@@ -310,7 +306,7 @@ export default function SignatureSection() {
         </div>
 
         {/* 2. Menu Supporting Items Selection */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {products.map((product, i) => (
             <ProductCard 
               key={product.id} 
