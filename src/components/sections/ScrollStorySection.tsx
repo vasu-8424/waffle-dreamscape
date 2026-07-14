@@ -9,7 +9,7 @@ import imgServe from "@/assets/opt-0F0A9279.jpg";
 const stages = [
   { title: "Flour", subtitle: "Premium quality flour, sifted to perfection", color: "#5c4731", image: imgFlour },
   { title: "Batter", subtitle: "Freshly mixed, smooth as silk", color: "#7e5b35", image: imgBatter },
-  { title: "Press", subtitle: "Golden grids form in the hot iron", color: "#E37A24", image: imgPress },
+  { title: "Press", subtitle: "Golden grids form in the hot iron", color: "#3FB6A4", image: imgPress },
   { title: "Drizzle", subtitle: "Rich chocolate cascades over the warm surface", color: "#423724", image: imgDrizzle },
   { title: "Serve", subtitle: "Crafted fresh. Served warm. Enjoyed more.", color: "#2FA69A", image: imgServe },
 ];

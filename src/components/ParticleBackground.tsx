@@ -29,7 +29,7 @@ export default function ParticleBackground() {
     resize();
     window.addEventListener("resize", resize);
 
-    const colors = ["#E37A24", "#2FA69A", "#DCEFEF", "#FFF7E6"];
+    const colors = ["#3FB6A4", "#2FA69A", "#DCEFEF", "#FFF7E6"];
     const particleCount = 25;
 
     for (let i = 0; i < particleCount; i++) {

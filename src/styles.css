@@ -32,6 +32,7 @@
   --color-input: var(--input);
   --color-ring: var(--ring);
   --color-brand-orange: var(--brand-orange);
+  --color-brand-orange-accent: var(--brand-orange-accent);
   --color-brand-turquoise: var(--brand-turquoise);
   --color-brand-mint: var(--brand-mint);
   --color-brand-chocolate: var(--brand-chocolate);
@@ -52,14 +53,16 @@
   --font-display: var(--font-display);
   --font-sans: var(--font-sans);
   --font-mono: var(--font-mono);
+  --font-cursive: var(--font-cursive);
 }
 
 :root {
   --radius: 0.625rem;
-  --brand-orange: #E37A24;
+  --brand-orange: #3FB6A4;
   --brand-turquoise: #2FA69A;
   --brand-mint: #DCEFEF;
   --brand-chocolate: #423724;
+  --brand-orange-accent: #E37A24;
   
   --luxury-black: #ffffff; /* Background white */
   --luxury-white: #2C1E14; /* Text dark chocolate brown */
@@ -95,6 +98,7 @@
   --font-display: "DM Serif Display", serif;
   --font-sans: "Inter", system-ui, sans-serif;
   --font-mono: "JetBrains Mono", monospace;
+  --font-cursive: "Dancing Script", cursive;
 }
 
 @utility glass-card {
@@ -112,7 +116,7 @@
 }
 
 @utility text-glow-orange {
-  text-shadow: 0 0 20px rgba(227, 122, 36, 0.4), 0 0 40px rgba(227, 122, 36, 0.2);
+  text-shadow: 0 0 20px rgba(63, 182, 164, 0.4), 0 0 40px rgba(63, 182, 164, 0.2);
 }
 
 @utility text-glow-turquoise {
@@ -120,7 +124,7 @@
 }
 
 @utility glow-border-orange {
-  box-shadow: 0 0 20px rgba(227, 122, 36, 0.15), inset 0 0 20px rgba(227, 122, 36, 0.05);
+  box-shadow: 0 0 20px rgba(63, 182, 164, 0.15), inset 0 0 20px rgba(63, 182, 164, 0.05);
 }
 
 @utility glow-border-turquoise {

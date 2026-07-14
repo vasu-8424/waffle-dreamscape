@@ -1,6 +1,10 @@
 import { useRef, useState } from "react";
 import { motion, useInView, useMotionValue, useSpring, useTransform, AnimatePresence } from "framer-motion";
 import { Plus, Check, Star } from "lucide-react";
+import imgAlmond from "@/assets/almond-sundae.jpg";
+import imgBrownie from "@/assets/brownielicious.jpg";
+import imgBlueberry from "@/assets/blueberry-wich.jpg";
+import imgKitkat from "@/assets/kitkat-wich.jpg";
 
 const products = [
   {
@@ -8,7 +12,7 @@ const products = [
     name: "Delighted Almond Sundae",
     desc: "Signature bubble waffle with vanilla ice cream, toasted almonds & caramel",
     price: "₹219",
-    image: "/Delighted Almond Sundae.jpeg",
+    image: imgAlmond,
     tag: "Premium Selection",
     color: "orange" as const,
     badge: "Signature",
@@ -19,7 +23,7 @@ const products = [
     name: "Brownielicious Waffy Tree",
     desc: "Layers of warm brownie chunks & crisp waffle wedges with dark chocolate drizzle",
     price: "₹189",
-    image: "/Brownielicious Waffy Tree.jpeg",
+    image: imgBrownie,
     tag: "Best Seller",
     color: "orange" as const,
     badge: "Indulgent",
@@ -30,7 +34,7 @@ const products = [
     name: "Blueberry Waffy Wich",
     desc: "Fresh blueberry compote folded into a warm waffle sandwich with whipped cream",
     price: "₹169",
-    image: "/Blueberry Waffy Wich.jpeg",
+    image: imgBlueberry,
     tag: "Freshly Made",
     color: "turquoise" as const,
     badge: "Fruity",
@@ -41,7 +45,7 @@ const products = [
     name: "Kitkat Wonder Waffy Wich",
     desc: "Crushed KitKat bars & milk chocolate ganache between golden waffles",
     price: "₹179",
-    image: "/Kitkat Wonder Waffy Wich.jpeg",
+    image: imgKitkat,
     tag: "Chocolate Lover",
     color: "turquoise" as const,
     badge: "Crunchy",
@@ -241,13 +245,22 @@ export default function SignatureSection() {
                   <img
                     src={selectedProduct.image}
                     alt={selectedProduct.name}
-                    className="w-[90%] h-[90%] object-cover rounded-full border-2 border-white/10 drop-shadow-[0_25px_60px_rgba(255,122,0,0.35)] select-none pointer-events-none"
+                    className="w-[90%] h-[90%] object-cover rounded-full border-2 border-white/10 drop-shadow-[0_25px_60px_rgba(63,182,164,0.35)] select-none pointer-events-none"
                     style={{ transform: "translateZ(50px)" }}
                   />
                   
                   {/* Floating crumbs */}
                   <div className="absolute top-1/4 left-1/10 w-2.5 h-2.5 bg-brand-orange rounded-full opacity-60 animate-float" style={{ animationDelay: "-1s" }} />
                   <div className="absolute bottom-1/4 right-1/10 w-3 h-3 bg-brand-turquoise rounded-full opacity-40 animate-float" style={{ animationDelay: "-3s" }} />
+                  
+                  {/* Cute Bunny Chef Mascot Sticker */}
+                  <div className="absolute -bottom-6 -right-6 w-28 h-28 md:w-32 md:h-32 z-20 pointer-events-none select-none animate-float" style={{ animationDelay: "-2s", transform: "translateZ(60px)" }}>
+                    <img
+                      src="/bunny-chef.png"
+                      alt="Bunny Chef Mascot"
+                      className="w-full h-full object-contain drop-shadow-[0_12px_24px_rgba(0,0,0,0.4)]"
+                    />
+                  </div>
                 </motion.div>
               </AnimatePresence>
             </div>
@@ -293,7 +306,7 @@ export default function SignatureSection() {
                   <div className="flex items-center justify-center lg:justify-start gap-8 pt-6 border-t border-white/5">
                     <button className={`px-8 py-3.5 rounded-full text-sm font-semibold flex items-center gap-2 transition-all duration-300 ${
                       selectedProduct.color === "orange"
-                        ? "bg-brand-orange hover:bg-brand-orange/80 hover:shadow-[0_0_30px_rgba(255,122,0,0.3)]"
+                        ? "bg-brand-orange hover:bg-brand-orange/80 hover:shadow-[0_0_30px_rgba(63,182,164,0.3)]"
                         : "bg-brand-turquoise hover:bg-brand-turquoise/80 hover:shadow-[0_0_30px_rgba(76,199,193,0.3)]"
                     } text-white cursor-pointer`}>
                       Add to Basket <Plus className="w-4 h-4" />

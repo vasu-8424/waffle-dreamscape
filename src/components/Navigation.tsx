@@ -67,14 +67,14 @@ export default function Navigation() {
                 className="text-sm font-medium text-zinc-400 hover:text-white transition-colors relative group"
               >
                 {link.label}
-                <span className="absolute -bottom-1 left-0 w-0 h-px bg-brand-orange group-hover:w-full transition-all duration-300" />
+                <span className="absolute -bottom-1 left-0 w-0 h-px bg-brand-orange-accent group-hover:w-full transition-all duration-300" />
               </button>
             ))}
             <a
               href="https://wa.me/919980773895"
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-brand-orange text-white px-5 py-2 rounded-full text-sm font-medium ring-1 ring-brand-orange ring-offset-2 ring-offset-luxury-black transition-transform hover:scale-105 active:scale-95 flex items-center justify-center"
+              className="bg-brand-orange-accent text-white px-5 py-2 rounded-full text-sm font-medium ring-1 ring-brand-orange-accent ring-offset-2 ring-offset-luxury-black transition-transform hover:scale-105 active:scale-95 flex items-center justify-center"
             >
               Book Now
             </a>
@@ -103,7 +103,7 @@ export default function Navigation() {
               <motion.button
                 key={link.href}
                 onClick={() => handleClick(link.href)}
-                className="text-2xl font-display text-white hover:text-brand-orange transition-colors"
+                className="text-2xl font-display text-white hover:text-brand-orange-accent transition-colors"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: i * 0.1 }}
@@ -116,7 +116,7 @@ export default function Navigation() {
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => setMobileOpen(false)}
-              className="mt-4 bg-brand-orange text-white px-8 py-3 rounded-full text-lg font-medium inline-flex items-center justify-center"
+              className="mt-4 bg-brand-orange-accent text-white px-8 py-3 rounded-full text-lg font-medium inline-flex items-center justify-center"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.5 }}

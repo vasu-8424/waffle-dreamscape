@@ -69,7 +69,7 @@ export default function SocialSection() {
               href="https://www.instagram.com/justwaffles_enjoymore?igsh=MXZwN3V6bDVkNTk0OA=="
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 px-8 py-3 bg-brand-orange text-white rounded-full font-medium hover:shadow-[0_0_30px_rgba(255,122,0,0.3)] transition-all"
+              className="inline-flex items-center justify-center gap-2 px-8 py-3 bg-brand-orange text-white rounded-full font-medium hover:shadow-[0_0_30px_rgba(63,182,164,0.3)] transition-all"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"

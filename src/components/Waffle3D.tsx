@@ -139,7 +139,7 @@ function WaffleScene({ mousePosRef }: { mousePosRef: React.RefObject<{ x: number
     <group ref={mainGroup}>
       {/* Dynamic lighting (decay simplified to save fill-rate) */}
       <pointLight position={[-2, 1.5, -1]} intensity={2.0} color="#2FA69A" distance={6} />
-      <pointLight position={[2, -1.5, 1]} intensity={2.5} color="#E37A24" distance={6} />
+      <pointLight position={[2, -1.5, 1]} intensity={2.5} color="#3FB6A4" distance={6} />
 
       {/* Centerpiece Waffle */}
       <group ref={waffleGroup} scale={1.25}>
@@ -265,7 +265,7 @@ function WaffleFallback({ mousePos }: { mousePos: { x: number; y: number } }) {
       <img
         src={heroWaffle}
         alt="Premium waffle"
-        className="w-[85%] h-auto rounded-3xl object-contain drop-shadow-[0_20px_50px_rgba(255,122,0,0.25)] select-none"
+        className="w-[85%] h-auto rounded-3xl object-contain drop-shadow-[0_20px_50px_rgba(63,182,164,0.25)] select-none"
         style={{ transform: "translateZ(30px)" }}
       />
     </div>

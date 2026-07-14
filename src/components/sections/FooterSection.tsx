@@ -62,6 +62,7 @@ export default function FooterSection() {
               </div>
               <h3 className="text-3xl font-display font-extrabold text-white tracking-wide">
                 JUST <span className="text-brand-orange">WAFFLES</span>
+                <span className="block font-cursive text-xl text-brand-orange-accent normal-case tracking-normal mt-1 leading-none">Enjoy more</span>
               </h3>
             </div>
             
@@ -75,7 +76,7 @@ export default function FooterSection() {
                 href="https://www.instagram.com/justwaffles_enjoymore?igsh=MXZwN3V6bDVkNTk0OA=="
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-11 h-11 glass-card rounded-full flex items-center justify-center hover:bg-brand-orange/20 hover:text-brand-orange hover:shadow-[0_0_15px_rgba(255,122,0,0.4)] transition-all text-zinc-400 cursor-pointer"
+                className="w-11 h-11 glass-card rounded-full flex items-center justify-center hover:bg-brand-orange/20 hover:text-brand-orange hover:shadow-[0_0_15px_rgba(63,182,164,0.4)] transition-all text-zinc-400 cursor-pointer"
                 aria-label="Instagram"
               >
                 <svg

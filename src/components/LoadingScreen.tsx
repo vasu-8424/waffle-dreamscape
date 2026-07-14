@@ -47,7 +47,7 @@ export default function LoadingScreen({ onComplete }: { onComplete: () => void }
             <img
               src="/logo.png"
               alt="Just Waffles Logo"
-              className="relative z-10 w-44 h-44 md:w-56 md:h-56 object-contain drop-shadow-[0_0_40px_rgba(255,122,0,0.35)] animate-float"
+              className="relative z-10 w-44 h-44 md:w-56 md:h-56 object-contain drop-shadow-[0_0_40px_rgba(63,182,164,0.35)] animate-float"
             />
           </motion.div>
 
