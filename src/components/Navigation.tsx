@@ -4,9 +4,9 @@ import { Menu, X } from "lucide-react";
 
 const navLinks = [
   { label: "Experience", href: "#experience" },
+  { label: "Signature", href: "#signature" },
   { label: "Menu", href: "#menu" },
   { label: "Journey", href: "#journey" },
-  { label: "Team", href: "#team" },
   { label: "Locations", href: "#locations" },
 ];
 
@@ -15,7 +15,7 @@ export default function Navigation() {
   const [mobileOpen, setMobileOpen] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 60);
+    const onScroll = () => setScrolled(window.scrollY > 40);
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
@@ -23,7 +23,17 @@ export default function Navigation() {
   const handleClick = (href: string) => {
     setMobileOpen(false);
     const el = document.querySelector(href);
-    if (el) el.scrollIntoView({ behavior: "smooth" });
+    if (el) {
+      const offset = 80;
+      const bodyRect = document.body.getBoundingClientRect().top;
+      const elementRect = el.getBoundingClientRect().top;
+      const elementPosition = elementRect - bodyRect;
+      const offsetPosition = elementPosition - offset;
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: "smooth"
+      });
+    }
   };
 
   return (
@@ -31,14 +41,14 @@ export default function Navigation() {
       <motion.nav
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
           scrolled
-            ? "bg-luxury-black/80 backdrop-blur-xl border-b border-white/5"
-            : "bg-transparent"
+            ? "bg-bg-primary border-b border-border py-5 shadow-sm"
+            : "bg-transparent py-8"
         }`}
         initial={{ y: -100 }}
         animate={{ y: 0 }}
         transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
       >
-        <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+        <div className="max-w-7xl mx-auto px-8 md:px-12 flex justify-between items-center">
           {/* Logo */}
           <a
             href="#"
@@ -46,35 +56,39 @@ export default function Navigation() {
               e.preventDefault();
               window.scrollTo({ top: 0, behavior: "smooth" });
             }}
-            className="flex items-center gap-3 text-xl font-semibold tracking-tight text-white font-display"
+            className={`flex items-center gap-3 text-lg font-medium tracking-[0.12em] font-display transition-colors duration-300 ${
+              scrolled ? "text-brown-900" : "text-[#FCFBF8]"
+            }`}
           >
             <img
               src="/logo.png"
-              alt="Just Waffles"
-              className="h-16 w-16 md:h-20 md:w-20 object-contain"
+              alt="Just Waffles Logo"
+              className="h-10 w-10 md:h-12 md:w-12 object-contain"
             />
             <span className="hidden sm:inline">
-              JUST <span className="text-brand-orange">WAFFLES</span>
+              JUST <span className="font-light text-brand-orange">WAFFLES</span>
             </span>
           </a>
 
           {/* Desktop links */}
-          <div className="hidden md:flex items-center gap-8">
+          <div className="hidden md:flex items-center gap-10">
             {navLinks.map((link) => (
               <button
                 key={link.href}
                 onClick={() => handleClick(link.href)}
-                className="text-sm font-medium text-zinc-400 hover:text-white transition-colors relative group"
+                className={`text-[13px] font-sans font-medium tracking-widest uppercase transition-colors duration-300 relative py-1 group ${
+                  scrolled ? "text-text-secondary hover:text-brand-orange" : "text-[#FCFBF8]/80 hover:text-brand-orange"
+                }`}
               >
                 {link.label}
-                <span className="absolute -bottom-1 left-0 w-0 h-px bg-brand-orange-accent group-hover:w-full transition-all duration-300" />
+                <span className="absolute bottom-0 left-0 w-0 h-[1.5px] bg-brand-orange group-hover:w-full transition-all duration-300 ease-out" />
               </button>
             ))}
             <a
               href="https://wa.me/919980773895"
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-brand-orange-accent text-white px-5 py-2 rounded-full text-sm font-medium ring-1 ring-brand-orange-accent ring-offset-2 ring-offset-luxury-black transition-transform hover:scale-105 active:scale-95 flex items-center justify-center"
+              className="h-[50px] px-8 bg-brand-orange hover:bg-brand-orange-hover text-white text-xs uppercase tracking-widest font-semibold inline-flex items-center justify-center transition-all duration-300 rounded-[8px]"
             >
               Book Now
             </a>
@@ -82,10 +96,13 @@ export default function Navigation() {
 
           {/* Mobile toggle */}
           <button
-            className="md:hidden text-white"
+            className={`md:hidden p-1 transition-colors duration-300 ${
+              scrolled ? "text-brown-900" : "text-[#FCFBF8]"
+            }`}
             onClick={() => setMobileOpen(!mobileOpen)}
+            aria-label="Toggle menu"
           >
-            {mobileOpen ? <X size={24} /> : <Menu size={24} />}
+            {mobileOpen ? <X size={20} strokeWidth={1.5} /> : <Menu size={20} strokeWidth={1.5} />}
           </button>
         </div>
       </motion.nav>
@@ -94,35 +111,43 @@ export default function Navigation() {
       <AnimatePresence>
         {mobileOpen && (
           <motion.div
-            className="fixed inset-0 z-40 bg-luxury-black/95 backdrop-blur-xl flex flex-col items-center justify-center gap-8 md:hidden"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-40 bg-bg-primary flex flex-col justify-between px-8 py-24 md:hidden"
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
           >
-            {navLinks.map((link, i) => (
-              <motion.button
-                key={link.href}
-                onClick={() => handleClick(link.href)}
-                className="text-2xl font-display text-white hover:text-brand-orange-accent transition-colors"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: i * 0.1 }}
-              >
-                {link.label}
-              </motion.button>
-            ))}
-            <motion.a
-              href="https://wa.me/919980773895"
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={() => setMobileOpen(false)}
-              className="mt-4 bg-brand-orange-accent text-white px-8 py-3 rounded-full text-lg font-medium inline-flex items-center justify-center"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.5 }}
+            <div className="flex flex-col gap-8 mt-10">
+              {navLinks.map((link, i) => (
+                <motion.button
+                  key={link.href}
+                  onClick={() => handleClick(link.href)}
+                  className="text-left text-3xl font-display font-light text-brown-900 hover:text-brand-orange transition-colors tracking-wide"
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: i * 0.08 }}
+                >
+                  {link.label}
+                </motion.button>
+              ))}
+            </div>
+            <motion.div
+              className="flex flex-col gap-6"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.4 }}
             >
-              Book Now
-            </motion.a>
+              <div className="h-px bg-border" />
+              <a
+                href="https://wa.me/919980773895"
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => setMobileOpen(false)}
+                className="w-full h-[52px] bg-brand-orange hover:bg-brand-orange-hover text-white text-xs uppercase tracking-widest font-semibold inline-flex items-center justify-center transition-all duration-300 rounded-[8px]"
+              >
+                Book Now
+              </a>
+            </motion.div>
           </motion.div>
         )}
       </AnimatePresence>

@@ -95,7 +95,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { rel: "stylesheet", href: appCss },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
-      { rel: "stylesheet", href: "https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Dancing+Script:wght@400;600;700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" },
+      { rel: "stylesheet", href: "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" },
     ],
   }),
   shellComponent: RootShell,
@@ -127,27 +127,31 @@ function RootComponent() {
 
     // Initialize Lenis smooth scroll
     const lenis = new Lenis({
-      duration: 1.2,
+      duration: 1.1,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       orientation: "vertical",
       gestureOrientation: "vertical",
       smoothWheel: true,
-      wheelMultiplier: 1.0,
-      touchMultiplier: 2.0,
+      wheelMultiplier: 0.95,
+      touchMultiplier: 1.5,
     });
 
     // Update ScrollTrigger on scroll
     lenis.on("scroll", ScrollTrigger.update);
 
-    // Sync GSAP ticker with Lenis raf
-    const updateTicker = (time: number) => {
-      lenis.raf(time * 1000);
-    };
-    gsap.ticker.add(updateTicker);
+    // Native requestAnimationFrame loop for native animation budget sync
+    let rafId: number;
+    function raf(time: number) {
+      lenis.raf(time);
+      rafId = requestAnimationFrame(raf);
+    }
+    rafId = requestAnimationFrame(raf);
+
+    // Optimize GSAP lagSmoothing
     gsap.ticker.lagSmoothing(0);
 
     return () => {
-      gsap.ticker.remove(updateTicker);
+      cancelAnimationFrame(rafId);
       lenis.destroy();
     };
   }, []);

@@ -1,76 +1,33 @@
-import { useRef, useEffect, useState } from "react";
-import { motion, useInView, useMotionValue, useSpring } from "framer-motion";
+import { useRef } from "react";
+import { motion, useInView } from "framer-motion";
+import { Award, Leaf, Calendar, MapPin } from "lucide-react";
 
 const stats = [
   {
-    value: 4.8,
-    suffix: "★",
+    value: "4.8★",
     label: "Customer Rating",
-    desc: "Across Google & food platforms",
-    color: "orange" as const,
+    desc: "Averaged across premier platforms",
+    icon: Award,
   },
   {
-    value: 100,
-    suffix: "%",
-    label: "Eggless",
-    desc: "Strictly vegetarian & pure ingredients",
-    color: "turquoise" as const,
+    value: "100%",
+    label: "Pure Eggless",
+    desc: "Strictly vegetarian, premium sourcing",
+    icon: Leaf,
   },
   {
-    value: 2024,
-    suffix: "",
-    label: "Founded",
-    desc: "Spreading waffle dreams in Blr",
-    color: "orange" as const,
+    value: "2024",
+    label: "Boutique Founded",
+    desc: "Crafting dessert dreams in Bengaluru",
+    icon: Calendar,
   },
   {
-    value: 4,
-    suffix: "+",
-    label: "Locations",
-    desc: "Growing neighborhood stores",
-    color: "turquoise" as const,
+    value: "4+",
+    label: "Boutique Stores",
+    desc: "Serving fresh warm grids daily",
+    icon: MapPin,
   },
 ];
-
-function Counter({ value, suffix, color }: { value: number; suffix: string; color: "orange" | "turquoise" }) {
-  const ref = useRef<HTMLSpanElement>(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
-  const motionValue = useMotionValue(0);
-  const springValue = useSpring(motionValue, {
-    damping: 30,
-    stiffness: 80,
-  });
-
-  useEffect(() => {
-    if (isInView) {
-      motionValue.set(value);
-    }
-  }, [isInView, value, motionValue]);
-
-  useEffect(() => {
-    return springValue.on("change", (latest) => {
-      if (ref.current) {
-        // Handle decimals for rating (e.g. 4.8)
-        if (value % 1 !== 0) {
-          ref.current.textContent = latest.toFixed(1) + suffix;
-        } else {
-          ref.current.textContent = Math.floor(latest).toLocaleString() + suffix;
-        }
-      }
-    });
-  }, [springValue, value, suffix]);
-
-  return (
-    <span
-      ref={ref}
-      className={`text-4xl md:text-5xl lg:text-6xl font-display font-bold text-glow-${
-        color === "orange" ? "orange" : "turquoise"
-      } ${color === "orange" ? "text-brand-orange" : "text-brand-turquoise"}`}
-    >
-      0{suffix}
-    </span>
-  );
-}
 
 export default function StatsSection() {
   const containerRef = useRef(null);
@@ -79,38 +36,41 @@ export default function StatsSection() {
   return (
     <section 
       ref={containerRef}
-      className="relative py-20 px-6 overflow-hidden bg-luxury-black/95 z-20 border-y border-white/5"
+      className="relative bg-bg-primary py-16 px-8 md:px-12 z-20 border-y border-border"
     >
-      {/* Background soft glows */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[150px] bg-brand-orange/5 blur-[100px] rounded-full pointer-events-none" />
-
-      <div className="max-w-7xl mx-auto relative z-10">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {stats.map((stat, i) => (
-            <motion.div
-              key={stat.label}
-              className={`glass-card rounded-2xl p-6 md:p-8 flex flex-col justify-between transition-all duration-500 hover:-translate-y-1 ${
-                stat.color === "orange"
-                  ? "hover:glow-border-orange hover:bg-white/[0.04]"
-                  : "hover:glow-border-turquoise hover:bg-white/[0.04]"
-              }`}
-              initial={{ opacity: 0, y: 30 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ delay: i * 0.1, duration: 0.6 }}
-            >
-              <div className="mb-4">
-                <Counter value={stat.value} suffix={stat.suffix} color={stat.color} />
-              </div>
-              <div>
-                <h4 className="text-white font-medium text-lg tracking-wide mb-1">
-                  {stat.label}
-                </h4>
-                <p className="text-zinc-500 text-sm">
-                  {stat.desc}
-                </p>
-              </div>
-            </motion.div>
-          ))}
+      <div className="max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-0 divide-y sm:divide-y-0 sm:divide-x divide-border">
+          {stats.map((stat, i) => {
+            const Icon = stat.icon;
+            return (
+              <motion.div
+                key={stat.label}
+                className="p-8 md:p-10 flex flex-col justify-between first:pl-0 last:pr-0"
+                initial={{ opacity: 0, y: 15 }}
+                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ delay: i * 0.1, duration: 0.8 }}
+              >
+                <div className="flex items-center justify-between mb-8">
+                  <span className="text-[11px] font-sans font-semibold uppercase tracking-widest text-brand-teal">
+                    Metric 0{i + 1}
+                  </span>
+                  <Icon className="w-5 h-5 text-brand-teal stroke-[1.2]" />
+                </div>
+                
+                <div>
+                  <h3 className="text-4xl lg:text-5xl font-display font-light text-brown-900 mb-3 tracking-tight">
+                    {stat.value}
+                  </h3>
+                  <h4 className="text-xs font-sans font-semibold tracking-wider uppercase text-brown-900 mb-1">
+                    {stat.label}
+                  </h4>
+                  <p className="text-[12px] text-text-secondary font-light font-sans">
+                    {stat.desc}
+                  </p>
+                </div>
+              </motion.div>
+            );
+          })}
         </div>
       </div>
     </section>

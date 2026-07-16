@@ -1,333 +1,229 @@
 import { useRef, useState } from "react";
-import { motion, useInView, useMotionValue, useSpring, useTransform, AnimatePresence } from "framer-motion";
-import { Plus, Check, Star } from "lucide-react";
-import imgAlmond from "@/assets/almond-sundae.jpg";
-import imgBrownie from "@/assets/brownielicious.jpg";
-import imgBlueberry from "@/assets/blueberry-wich.jpg";
-import imgKitkat from "@/assets/kitkat-wich.jpg";
+import { motion, AnimatePresence } from "framer-motion";
+import { Star } from "lucide-react";
+import imgAlmond from "@/assets/opt-0F0A9306.jpg";
+import imgBrownie from "@/assets/opt-0F0A9279.jpg";
+import imgBlueberry from "@/assets/opt-0F0A9281.jpg";
+import imgKitkat from "@/assets/opt-0F0A9353.jpg";
 
 const products = [
   {
     id: "almond-sundae",
     name: "Delighted Almond Sundae",
-    desc: "Signature bubble waffle with vanilla ice cream, toasted almonds & caramel",
+    category: "Signature Bowl",
+    desc: "Signature warm bubble waffle served with soft-churned vanilla bean ice cream, toasted sliced almonds, and artisanal sea-salt caramel.",
     price: "₹219",
     image: imgAlmond,
-    tag: "Premium Selection",
-    color: "orange" as const,
-    badge: "Signature",
+    ingredients: ["Eggless Batter", "Toasted Almonds", "Vanilla Bean", "Artisanal Caramel"],
     rating: "5.0",
   },
   {
     id: "brownielicious",
     name: "Brownielicious Waffy Tree",
-    desc: "Layers of warm brownie chunks & crisp waffle wedges with dark chocolate drizzle",
+    category: "Gourmet Wedge",
+    desc: "Layers of warm, fudge-rich brownie chunks, crisp waffle wedges, topped with cascaded Belgian dark chocolate ganache.",
     price: "₹189",
     image: imgBrownie,
-    tag: "Best Seller",
-    color: "orange" as const,
-    badge: "Indulgent",
+    ingredients: ["Brownie Fudge", "Waffle Wedges", "Belgian Cocoa", "Chocolate Drizzle"],
     rating: "4.9",
   },
   {
     id: "blueberry",
     name: "Blueberry Waffy Wich",
-    desc: "Fresh blueberry compote folded into a warm waffle sandwich with whipped cream",
+    category: "Waffle Sandwich",
+    desc: "Plump wild blueberry compote folded into a warm waffle sandwich with sweetened whipped double cream.",
     price: "₹169",
     image: imgBlueberry,
-    tag: "Freshly Made",
-    color: "turquoise" as const,
-    badge: "Fruity",
+    ingredients: ["Blueberry Compote", "Sweetened Cream", "Double Sandwich"],
     rating: "4.8",
   },
   {
     id: "kitkat",
     name: "Kitkat Wonder Waffy Wich",
-    desc: "Crushed KitKat bars & milk chocolate ganache between golden waffles",
+    category: "Waffle Sandwich",
+    desc: "Crushed crunchy KitKat bar pieces paired with a rich milk chocolate ganache nestled inside a golden waffle sandwich.",
     price: "₹179",
     image: imgKitkat,
-    tag: "Chocolate Lover",
-    color: "turquoise" as const,
-    badge: "Crunchy",
+    ingredients: ["KitKat Bars", "Milk Ganache", "Golden Sandwich"],
     rating: "4.8",
   },
 ];
 
-function ProductCard({ product, index, onSelect }: { product: typeof products[0]; index: number; onSelect: () => void }) {
-  const ref = useRef<HTMLDivElement>(null);
-  const [isHovered, setIsHovered] = useState(false);
-  const x = useMotionValue(0.5);
-  const y = useMotionValue(0.5);
-
-  const rotateX = useSpring(useTransform(y, [0, 1], [10, -10]), { stiffness: 200, damping: 25 });
-  const rotateY = useSpring(useTransform(x, [0, 1], [-10, 10]), { stiffness: 200, damping: 25 });
-
-  const handleMouseMove = (e: React.MouseEvent) => {
-    if (!ref.current) return;
-    const rect = ref.current.getBoundingClientRect();
-    x.set((e.clientX - rect.left) / rect.width);
-    y.set((e.clientY - rect.top) / rect.height);
-  };
-
-  const handleMouseLeave = () => {
-    x.set(0.5);
-    y.set(0.5);
-    setIsHovered(false);
-  };
-
-  return (
-    <motion.div
-      ref={ref}
-      className="group relative cursor-pointer"
-      initial={{ opacity: 0, y: 40 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-50px" }}
-      transition={{ delay: index * 0.1, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-      style={{
-        rotateX: isHovered ? rotateX : 0,
-        rotateY: isHovered ? rotateY : 0,
-        transformStyle: "preserve-3d",
-        perspective: 1000,
-      }}
-      onMouseMove={handleMouseMove}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={handleMouseLeave}
-      onClick={onSelect}
-    >
-      <div className={`glass-card rounded-3xl overflow-hidden p-4 transition-all duration-500 min-h-[380px] flex flex-col justify-between ${
-        isHovered ? (product.color === "orange" ? "glow-border-orange bg-white/[0.04]" : "glow-border-turquoise bg-white/[0.04]") : "bg-white/[0.02]"
-      }`}>
-        {/* Elevated Image Container with dynamic glow */}
-        <div className="relative aspect-[16/11] rounded-2xl overflow-hidden mb-4 border border-white/5" style={{ transformStyle: "preserve-3d" }}>
-          {/* Backlight glow */}
-          <div className={`absolute -inset-6 bg-${
-            product.color === "orange" ? "brand-orange" : "brand-turquoise"
-          }/10 blur-xl rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-0`} />
-          
-          <motion.img
-            src={product.image}
-            alt={product.name}
-            className="relative z-10 w-full h-full object-cover rounded-2xl"
-            animate={{ 
-              rotate: isHovered ? 4 : 0,
-              scale: isHovered ? 1.05 : 1,
-            }}
-            transition={{ type: "spring", stiffness: 150, damping: 20 }}
-            style={{ transform: "translateZ(30px)" }}
-            loading="lazy"
-          />
-
-          {product.tag && (
-            <div className="absolute top-3 left-3 z-20">
-              <span className={`px-2.5 py-0.5 rounded-full text-[9px] uppercase font-bold tracking-widest ${
-                product.color === "orange"
-                  ? "bg-brand-orange/20 text-brand-orange border border-brand-orange/30"
-                  : "bg-brand-turquoise/20 text-brand-turquoise border border-brand-turquoise/30"
-              }`}>
-                {product.tag}
-              </span>
-            </div>
-          )}
-        </div>
-
-        {/* Info */}
-        <div className="flex-1 flex flex-col justify-between">
-          <div>
-            <div className="flex items-center gap-2 mb-1">
-              <span className="text-[10px] uppercase font-mono font-semibold tracking-wider text-zinc-500">
-                {product.badge}
-              </span>
-              <div className="flex items-center gap-0.5 text-amber-500 text-[10px]">
-                <Star className="w-2.5 h-2.5 fill-current" />
-                {product.rating}
-              </div>
-            </div>
-            <h3 className="text-xl font-display font-bold text-white mb-2 leading-tight group-hover:text-zinc-200 transition-colors">
-              {product.name}
-            </h3>
-            <p className="text-zinc-400 text-xs leading-relaxed mb-4 line-clamp-2">
-              {product.desc}
-            </p>
-          </div>
-
-          <div className="flex justify-end items-center pt-2 border-t border-white/5">
-            <button className={`w-9 h-9 rounded-full flex items-center justify-center transition-all ${
-              product.color === "orange"
-                ? "bg-zinc-800 hover:bg-brand-orange text-white"
-                : "bg-zinc-800 hover:bg-brand-turquoise text-white"
-            }`}>
-              <Plus className="w-3.5 h-3.5" />
-            </button>
-          </div>
-        </div>
-      </div>
-    </motion.div>
-  );
-}
-
 export default function SignatureSection() {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const containerRef = useRef(null);
   const [selectedProduct, setSelectedProduct] = useState(products[0]);
-  
-  // Custom tilt values for the featured card
-  const fX = useMotionValue(0.5);
-  const fY = useMotionValue(0.5);
-  const fRotateX = useSpring(useTransform(fY, [0, 1], [6, -6]), { stiffness: 150, damping: 20 });
-  const fRotateY = useSpring(useTransform(fX, [0, 1], [-6, 6]), { stiffness: 150, damping: 20 });
-
-  const handleFeaturedMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    const el = e.currentTarget;
-    const rect = el.getBoundingClientRect();
-    fX.set((e.clientX - rect.left) / rect.width);
-    fY.set((e.clientY - rect.top) / rect.height);
-  };
 
   return (
-    <section id="menu" className="relative py-32 px-6 overflow-hidden bg-luxury-black/95 border-b border-white/5" ref={ref}>
-      {/* Cinematic glows */}
-      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[700px] h-[500px] bg-brand-orange/5 blur-[150px] rounded-full pointer-events-none" />
-      
-      <div className="max-w-7xl mx-auto relative z-10">
+    <section 
+      id="signature" 
+      ref={containerRef}
+      className="bg-bg-primary py-36 px-8 md:px-12 z-20 border-b border-border"
+    >
+      <div className="max-w-7xl mx-auto">
         
         {/* Section Header */}
-        <motion.div
-          className="text-center mb-20"
-          initial={{ opacity: 0, y: 35 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8 }}
-        >
-          <span className="text-brand-orange font-mono text-xs md:text-sm uppercase tracking-[0.3em] mb-4 block font-semibold">
-            Signature Selection
+        <div className="text-center mb-28">
+          <span className="text-[10px] font-sans font-semibold uppercase tracking-[0.4em] text-brand-teal mb-4 block">
+            The Collection
           </span>
-          <h2 className="text-4xl md:text-6xl font-display font-bold text-white leading-tight">
-            The <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-orange to-brand-turquoise">Icons.</span>
+          <h2 className="text-4xl md:text-6xl font-display font-light text-brown-900 leading-tight tracking-tight">
+            Chef's <span className="font-serif italic text-brand-teal">Signatures</span>
           </h2>
-          <div className="mt-4 w-20 h-0.5 bg-gradient-to-r from-brand-orange to-brand-turquoise mx-auto rounded-full" />
-        </motion.div>
+          <p className="text-xs font-sans tracking-widest text-text-muted uppercase mt-4">
+            Curated dessert concepts, prepared fresh to order
+          </p>
+        </div>
 
-        {/* 1. Large Immersive Featured Waffle Showcase */}
-        <div className="mb-20">
-          <motion.div
-            className="glass-card rounded-[2.5rem] overflow-hidden p-6 md:p-12 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center min-h-[480px] hover:glow-border-orange transition-all duration-700 bg-white/[0.01]"
-            onMouseMove={handleFeaturedMove}
-            onMouseLeave={() => { fX.set(0.5); fY.set(0.5); }}
-            style={{
-              rotateX: fRotateX,
-              rotateY: fRotateY,
-              transformStyle: "preserve-3d",
-              perspective: 1000
-            }}
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={isInView ? { opacity: 1, scale: 1 } : {}}
-            transition={{ duration: 0.8 }}
-          >
-            {/* Left Column: Rotating Interactive Product Visual */}
-            <div className="lg:col-span-6 flex items-center justify-center relative h-[300px] lg:h-[400px]">
-              
-              {/* Backlight halo spinning slowly */}
-              <div 
-                className={`absolute w-72 h-72 rounded-full blur-[80px] opacity-30 animate-spin-slow transition-colors duration-700 ${
-                  selectedProduct.color === "orange" ? "bg-brand-orange" : "bg-brand-turquoise"
-                }`} 
-              />
-              
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={selectedProduct.id}
-                  className="relative w-64 h-64 sm:w-80 sm:h-80 lg:w-96 lg:h-96 flex items-center justify-center"
-                  initial={{ opacity: 0, scale: 0.8, rotate: -10 }}
-                  animate={{ opacity: 1, scale: 1, rotate: 0 }}
-                  exit={{ opacity: 0, scale: 0.8, rotate: 10 }}
-                  transition={{ type: "spring", stiffness: 120, damping: 20 }}
-                  style={{ transformStyle: "preserve-3d" }}
-                >
-                  <img
+        {/* 1. Large Asymmetrical Featured Product Showcase */}
+        <div className="mb-32">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+            
+            {/* Left Column: Framed Portrait Product Image */}
+            <div className="lg:col-span-7 flex justify-center lg:justify-start">
+              <div className="w-full max-w-[620px] aspect-[3/2] sm:aspect-[16/10] bg-bg-secondary overflow-hidden border border-border rounded-[8px] p-2 relative shadow-sm">
+                <AnimatePresence mode="wait">
+                  <motion.img
+                    key={selectedProduct.id}
                     src={selectedProduct.image}
                     alt={selectedProduct.name}
-                    className="w-[90%] h-[90%] object-cover rounded-full border-2 border-white/10 drop-shadow-[0_25px_60px_rgba(63,182,164,0.35)] select-none pointer-events-none"
-                    style={{ transform: "translateZ(50px)" }}
+                    className="w-full h-full object-cover rounded-[6px] grayscale-[10%] hover:grayscale-0 transition-all duration-700"
+                    initial={{ opacity: 0, scale: 1.02 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.6 }}
                   />
-                  
-                  {/* Floating crumbs */}
-                  <div className="absolute top-1/4 left-1/10 w-2.5 h-2.5 bg-brand-orange rounded-full opacity-60 animate-float" style={{ animationDelay: "-1s" }} />
-                  <div className="absolute bottom-1/4 right-1/10 w-3 h-3 bg-brand-turquoise rounded-full opacity-40 animate-float" style={{ animationDelay: "-3s" }} />
-                  
-                  {/* Cute Bunny Chef Mascot Sticker */}
-                  <div className="absolute -bottom-6 -right-6 w-28 h-28 md:w-32 md:h-32 z-20 pointer-events-none select-none animate-float" style={{ animationDelay: "-2s", transform: "translateZ(60px)" }}>
-                    <img
-                      src="/bunny-chef.png"
-                      alt="Bunny Chef Mascot"
-                      className="w-full h-full object-contain drop-shadow-[0_12px_24px_rgba(0,0,0,0.4)]"
-                    />
-                  </div>
-                </motion.div>
-              </AnimatePresence>
+                </AnimatePresence>
+              </div>
             </div>
 
-            {/* Right Column: Premium Slogan, Details & Pricing */}
-            <div className="lg:col-span-6 flex flex-col justify-center text-center lg:text-left" style={{ transform: "translateZ(30px)" }}>
+            {/* Right Column: Luxury Product Narrative */}
+            <div className="lg:col-span-5 flex flex-col justify-center text-left">
               <AnimatePresence mode="wait">
                 <motion.div
                   key={selectedProduct.id}
-                  initial={{ opacity: 0, x: 20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, x: -20 }}
+                  initial={{ opacity: 0, y: 15 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -15 }}
                   transition={{ duration: 0.4 }}
                 >
-                  <span className={`inline-block px-3.5 py-1 rounded-full text-xs font-mono font-bold tracking-widest mb-4 ${
-                    selectedProduct.color === "orange"
-                      ? "bg-brand-orange/20 text-brand-orange border border-brand-orange/30"
-                      : "bg-brand-turquoise/20 text-brand-turquoise border border-brand-turquoise/30"
-                  }`}>
-                    {selectedProduct.tag}
+                  <span className="text-[10px] font-sans font-bold tracking-widest uppercase text-brand-orange mb-3 block">
+                    Featured Masterpiece
                   </span>
                   
-                  <h3 className="text-3xl md:text-5xl font-display font-extrabold text-white leading-tight mb-4 tracking-wide">
+                  <h3 className="text-3xl md:text-4xl font-display font-light text-brown-900 leading-tight tracking-tight mb-4">
                     {selectedProduct.name}
                   </h3>
+
+                  <div className="flex items-center gap-1.5 mb-6 text-brand-orange">
+                    <span className="text-xs font-sans tracking-widest uppercase font-semibold text-brand-teal mr-2">
+                      {selectedProduct.category}
+                    </span>
+                    <Star className="w-3.5 h-3.5 fill-current" />
+                    <span className="text-xs font-mono font-medium text-brown-900">{selectedProduct.rating} / 5.0</span>
+                  </div>
                   
-                  <p className="text-zinc-400 text-sm md:text-base leading-relaxed mb-6 font-sans">
+                  <p className="text-[14px] leading-relaxed text-text-secondary font-sans font-light mb-8">
                     {selectedProduct.desc}
                   </p>
                   
-                  <div className="flex flex-wrap items-center justify-center lg:justify-start gap-3 text-xs mb-8 text-zinc-400">
-                    <span className="flex items-center gap-1 bg-white/5 px-3 py-1 rounded-full">
-                      <Check className="w-3.5 h-3.5 text-brand-turquoise" /> 100% Eggless
-                    </span>
-                    <span className="flex items-center gap-1 bg-white/5 px-3 py-1 rounded-full">
-                      <Check className="w-3.5 h-3.5 text-brand-turquoise" /> Freshly Baked
-                    </span>
-                    <span className="flex items-center gap-1 bg-white/5 px-3 py-1 rounded-full">
-                      <Check className="w-3.5 h-3.5 text-brand-turquoise" /> Gourmet Drizzle
-                    </span>
+                  {/* Ingredient Chips */}
+                  <div className="flex flex-wrap gap-2 mb-10">
+                    {selectedProduct.ingredients.map((ing) => (
+                      <span 
+                        key={ing} 
+                        className="px-3 py-1 bg-bg-secondary border border-border text-[11px] font-sans font-light tracking-wide text-text-secondary rounded-[4px]"
+                      >
+                        {ing}
+                      </span>
+                    ))}
                   </div>
 
-                  <div className="flex items-center justify-center lg:justify-start gap-8 pt-6 border-t border-white/5">
-                    <button className={`px-8 py-3.5 rounded-full text-sm font-semibold flex items-center gap-2 transition-all duration-300 ${
-                      selectedProduct.color === "orange"
-                        ? "bg-brand-orange hover:bg-brand-orange/80 hover:shadow-[0_0_30px_rgba(63,182,164,0.3)]"
-                        : "bg-brand-turquoise hover:bg-brand-turquoise/80 hover:shadow-[0_0_30px_rgba(76,199,193,0.3)]"
-                    } text-white cursor-pointer`}>
-                      Add to Basket <Plus className="w-4 h-4" />
+                  <div className="flex items-baseline gap-6 pt-6 border-t border-border">
+                    <span className="text-2xl font-display font-light text-brown-900">
+                      {selectedProduct.price}
+                    </span>
+                    
+                    <button className="h-[52px] px-8 bg-brand-orange text-white text-xs uppercase tracking-widest font-semibold transition-all duration-300 hover:bg-brand-orange-hover rounded-[8px] cursor-pointer">
+                      Add to Basket
                     </button>
                   </div>
                 </motion.div>
               </AnimatePresence>
             </div>
-          </motion.div>
+
+          </div>
         </div>
 
-        {/* 2. Menu Supporting Items Selection */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {products.map((product, i) => (
-            <ProductCard 
-              key={product.id} 
-              product={product} 
-              index={i} 
-              onSelect={() => setSelectedProduct(product)} 
-            />
-          ))}
+        {/* 2. Menu Section Grid */}
+        <div id="menu" className="pt-24 border-t border-border">
+          <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
+            <div className="text-left">
+              <span className="text-[10px] font-sans font-semibold uppercase tracking-[0.4em] text-brand-teal mb-3 block">
+                Boutique Patisserie
+              </span>
+              <h3 className="text-3xl md:text-4xl font-display font-light text-brown-900 tracking-tight">
+                The Gourmet <span className="font-serif italic text-brand-teal">Menu</span>
+              </h3>
+            </div>
+            
+            <p className="text-[13px] text-text-secondary font-light font-sans max-w-xs text-left md:text-right">
+              Select any item to feature it above and explore its premium ingredients.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+            {products.map((product) => {
+              const isSelected = selectedProduct.id === product.id;
+              return (
+                <div
+                  key={product.id}
+                  onClick={() => setSelectedProduct(product)}
+                  className={`group cursor-pointer p-4 bg-surface border transition-all duration-500 rounded-[8px] shadow-sm ${
+                    isSelected 
+                      ? "border-brand-orange" 
+                      : "border-border hover:border-brown-700"
+                  }`}
+                >
+                  {/* Portrait 4:5 framed photography */}
+                  <div className="relative aspect-[4/5] overflow-hidden mb-6 bg-bg-secondary rounded-[6px] border border-border">
+                    <img
+                      src={product.image}
+                      alt={product.name}
+                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-103 rounded-[6px]"
+                      loading="lazy"
+                    />
+                  </div>
+
+                  {/* Product Details */}
+                  <div className="text-left">
+                    <div className="flex justify-between items-baseline gap-2 mb-2">
+                      <span className="text-[9px] font-sans tracking-widest uppercase font-semibold text-brand-teal">
+                        {product.category}
+                      </span>
+                      <span className="text-xs font-mono font-medium text-brand-orange flex items-center gap-0.5">
+                        <Star className="w-2.5 h-2.5 fill-brand-orange text-brand-orange" /> {product.rating}
+                      </span>
+                    </div>
+
+                    <h4 className="text-lg font-display font-light text-brown-900 mb-2 tracking-tight group-hover:text-brand-orange transition-colors">
+                      {product.name}
+                    </h4>
+
+                    <p className="text-[12px] leading-relaxed text-text-secondary font-light font-sans line-clamp-2 mb-4">
+                      {product.desc}
+                    </p>
+
+                    <div className="pt-3 border-t border-border flex justify-between items-center text-xs font-medium uppercase tracking-wider text-brown-900">
+                      <span>{product.price}</span>
+                      <span className="text-[10px] text-brand-orange opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        View Details &rarr;
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
         </div>
         
       </div>

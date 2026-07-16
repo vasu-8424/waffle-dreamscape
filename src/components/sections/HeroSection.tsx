@@ -1,224 +1,156 @@
-import { useRef, useEffect, useState } from "react";
+import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
-import MagneticButton from "../MagneticButton";
-import bgHero from "@/assets/opt-one.jpg";
+import heroBg from "@/assets/opt-one.jpg";
 
-// Animating Counter component
-function Counter({ value, suffix = "" }: { value: number; suffix?: string }) {
-  const [count, setCount] = useState(0);
-  useEffect(() => {
-    let start = 0;
-    const duration = 2000;
-    const stepTime = 40;
-    const steps = duration / stepTime;
-    const increment = value / steps;
-    const timer = setInterval(() => {
-      start += increment;
-      if (start >= value) {
-        setCount(value);
-        clearInterval(timer);
-      } else {
-        setCount(Math.floor(start));
-      }
-    }, stepTime);
-    return () => clearInterval(timer);
-  }, [value]);
-  return <span>{count}{suffix}</span>;
-}
+const containerVariants = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.1,
+      delayChildren: 0.2,
+    },
+  },
+};
 
-// Decimal Counter component for Ratings
-function DecimalCounter({ value, suffix = "" }: { value: number; suffix?: string }) {
-  const [count, setCount] = useState(0.0);
-  useEffect(() => {
-    let start = 0.0;
-    const target = value;
-    const timer = setInterval(() => {
-      start += 0.1;
-      if (start >= target) {
-        setCount(target);
-        clearInterval(timer);
-      } else {
-        setCount(Number(start.toFixed(1)));
-      }
-    }, 40);
-    return () => clearInterval(timer);
-  }, [value]);
-  return <span>{count.toFixed(1)}{suffix}</span>;
-}
+const fadeUpVariants = {
+  hidden: { opacity: 0, y: 25 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 1,
+      ease: [0.16, 1, 0.3, 1],
+    },
+  },
+};
 
 export default function HeroSection() {
-  const sectionRef = useRef<HTMLElement>(null);
+  const containerRef = useRef<HTMLElement>(null);
 
-  // Scroll tracking for parallax and reveal fades
+  // Track scroll position for image scale/zoom effect
   const { scrollYProgress } = useScroll({
-    target: sectionRef,
+    target: containerRef,
     offset: ["start start", "end start"],
   });
 
-  const textOpacity = useTransform(scrollYProgress, [0, 0.45], [1, 0]);
-  const textY = useTransform(scrollYProgress, [0, 0.45], [0, -80]);
-  const textScale = useTransform(scrollYProgress, [0, 0.45], [1, 0.96]);
-
-
-
-  useEffect(() => {
-    const section = sectionRef.current;
-    if (!section) return;
-
-    let rafId: number;
-    const handleMouseMove = (e: MouseEvent) => {
-      if (rafId) cancelAnimationFrame(rafId);
-      rafId = requestAnimationFrame(() => {
-        const rect = section.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-        section.style.setProperty("--mouse-x", `${x}px`);
-        section.style.setProperty("--mouse-y", `${y}px`);
-      });
-    };
-    window.addEventListener("mousemove", handleMouseMove, { passive: true });
-    return () => {
-      window.removeEventListener("mousemove", handleMouseMove);
-      if (rafId) cancelAnimationFrame(rafId);
-    };
-  }, []);
+  // Map scroll progress to subtle zoom (1.0 -> 1.05) and vertical parallax
+  const scale = useTransform(scrollYProgress, [0, 1], [1, 1.05]);
+  const yTranslate = useTransform(scrollYProgress, [0, 1], ["0%", "8%"]);
 
   return (
-    <motion.section
-      ref={sectionRef}
-      className="relative min-h-screen flex flex-col overflow-hidden bg-black noise-overlay z-10"
-      style={{
-        backgroundImage: `url(${bgHero})`,
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-      }}
+    <section 
+      ref={containerRef}
+      className="relative h-screen w-full flex items-center bg-[#2B1A12] overflow-hidden z-20"
     >
+      {/* 8K Cinematic Background Image Container */}
+      <motion.div 
+        className="absolute inset-0 w-full h-full z-0 select-none pointer-events-none"
+        style={{ scale, y: yTranslate }}
+      >
+        <img
+          src={heroBg}
+          alt="Cinematic gourmet waffle with glossy chocolate drizzle"
+          className="w-full h-full object-cover object-right grayscale-[5%] brightness-[95%]"
+          loading="eager"
+        />
+      </motion.div>
 
+      {/* Subtle Gradient Overlay for Text Readability */}
+      <div 
+        className="absolute inset-0 z-10 pointer-events-none"
+        style={{
+          background: "linear-gradient(90deg, rgba(0, 0, 0, 0.65) 0%, rgba(0, 0, 0, 0.35) 45%, rgba(0, 0, 0, 0.10) 75%, transparent 100%)"
+        }}
+      />
 
-      {/* 3. Cinematic 100vh Layout (Content with background showcase) */}
-      <div className="relative z-10 w-full max-w-7xl mx-auto px-6 flex-1 flex flex-col justify-center pt-36 lg:pt-44">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-4 items-center w-full my-auto">
+      <div className="w-full max-w-7xl mx-auto px-8 md:px-12 relative z-20">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
           
-          {/* Content Block */}
-          <div className="lg:col-span-8 xl:col-span-7 flex flex-col justify-center text-center lg:text-left z-20">
+          {/* Left Column (Luxury Content Box) */}
+          <motion.div 
+            className="lg:col-span-7 flex flex-col justify-center text-left max-w-[620px]"
+            variants={containerVariants}
+            initial="hidden"
+            animate="visible"
+          >
+            {/* Eyebrow */}
             <motion.span
-              className="font-cursive text-3xl md:text-4xl text-brand-orange-accent mb-2 block"
-              style={{ opacity: textOpacity, y: textY }}
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.1, duration: 0.8 }}
+              className="text-[9px] font-sans font-bold uppercase tracking-[0.6em] text-brand-teal mb-6 block"
+              variants={fadeUpVariants}
             >
-              Enjoy more
+              ESTABLISHED • BENGALURU • 2024
             </motion.span>
 
-            <motion.span
-              className="inline-block text-brand-turquoise font-mono text-xs uppercase tracking-[0.45em] mb-5 font-semibold"
-              style={{ opacity: textOpacity, y: textY }}
-              initial={{ opacity: 0, y: 15 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2, duration: 0.8 }}
-            >
-              Bengaluru&apos;s Original Waffle Experience
-            </motion.span>
+            {/* Headline (Serif 90-110px desktop, White, 1 Teal highlight word) */}
+            <h1 className="font-display font-light text-5xl sm:text-7xl md:text-8xl lg:text-[90px] xl:text-[105px] text-[#FCFBF8] tracking-tight leading-[0.95] mb-8 select-none">
+              <motion.span className="block" variants={fadeUpVariants}>
+                Where
+              </motion.span>
+              <motion.span className="block" variants={fadeUpVariants}>
+                Every Waffle
+              </motion.span>
+              <motion.span className="block font-serif italic text-brand-teal" variants={fadeUpVariants}>
+                Becomes Art.
+              </motion.span>
+            </h1>
 
-            <motion.h1
-              className="font-display font-extrabold text-[13vw] sm:text-[10vw] lg:text-[7.5rem] xl:text-[8.5rem] tracking-tighter leading-[0.85] mb-6 select-none"
-              style={{ opacity: textOpacity, y: textY, scale: textScale }}
-              initial={{ opacity: 0, y: 35 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.4, duration: 1, ease: [0.16, 1, 0.3, 1] }}
+            {/* Description (max 3 lines, light warm cream) */}
+            <motion.p
+              className="text-[14px] sm:text-[15px] leading-relaxed text-[#FCFBF8]/80 font-sans font-light mb-10"
+              variants={fadeUpVariants}
             >
-              JUST
-              <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-br from-brand-orange-accent via-amber-300 to-brand-turquoise text-glow-orange animate-pulse">
-                WAFFLES
-              </span>
-            </motion.h1>
+              Handcrafted eggless waffles prepared with carefully selected
+              ingredients, premium chocolate and artisanal techniques that
+              transform every bite into an unforgettable experience.
+            </motion.p>
 
+            {/* Buttons (strictly 56px height, 8px radius) */}
             <motion.div
-              style={{ opacity: textOpacity, y: textY }}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.6, duration: 0.8 }}
-              className="space-y-4 max-w-md mx-auto lg:mx-0"
+              className="flex flex-col sm:flex-row gap-4"
+              variants={fadeUpVariants}
             >
-              <p className="text-lg md:text-xl text-zinc-100 font-display font-medium tracking-wide">
-                Crafted Fresh. Served Warm. Enjoyed More.
-              </p>
-              <p className="text-xs md:text-sm text-zinc-400 leading-relaxed font-sans font-normal">
-                Premium Eggless Waffles made with carefully selected ingredients and innovative recipes.
-              </p>
-            </motion.div>
-
-            {/* CTA Buttons with premium glassmorphism and glow borders */}
-            <motion.div
-              className="flex flex-wrap gap-4 justify-center lg:justify-start items-center mt-8"
-              style={{ opacity: textOpacity, y: textY }}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.8, duration: 0.8 }}
-            >
-              <MagneticButton
-                onClick={() => document.querySelector("#menu")?.scrollIntoView({ behavior: "smooth" })}
-                className="px-8 py-3.5 bg-brand-orange-accent text-white rounded-full font-bold text-xs uppercase tracking-wider shadow-[0_0_30px_rgba(227,122,36,0.35)] hover:shadow-[0_0_40px_rgba(227,122,36,0.55)] hover:bg-brand-orange-accent/95 transition-all cursor-pointer relative overflow-hidden"
+              <button
+                onClick={() => {
+                  document.querySelector("#signature")?.scrollIntoView({ behavior: "smooth", block: "start" });
+                }}
+                className="h-14 px-8 bg-brand-orange text-white text-xs uppercase tracking-widest font-semibold transition-all duration-300 hover:bg-brand-orange-hover rounded-[8px] cursor-pointer"
               >
-                Explore Waffles
-              </MagneticButton>
+                Explore Menu
+              </button>
 
-              <MagneticButton
-                onClick={() => document.querySelector("#locations")?.scrollIntoView({ behavior: "smooth" })}
-                className="px-8 py-3.5 glass-card-strong text-white border border-white/10 rounded-full font-bold text-xs uppercase tracking-wider hover:bg-white/10 transition-all cursor-pointer"
+              <button
+                onClick={() => {
+                  document.querySelector("#locations")?.scrollIntoView({ behavior: "smooth", block: "start" });
+                }}
+                className="h-14 px-8 bg-transparent text-white border border-white text-xs uppercase tracking-widest font-semibold transition-all duration-300 hover:bg-white hover:text-brown-900 rounded-[8px] cursor-pointer"
               >
-                Visit Store
-              </MagneticButton>
+                Find Boutique
+              </button>
             </motion.div>
-          </div>
+          </motion.div>
 
         </div>
       </div>
 
-      {/* 4. Floating Glassmorphism Stats Bar */}
-      <motion.div
-        className="w-full max-w-5xl mx-auto mt-auto mb-4 px-6 z-20"
-        initial={{ opacity: 0, y: 30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 1.0, duration: 0.8 }}
-      >
-        <div className="glass-card rounded-3xl p-5 md:py-6 md:px-10 grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 border border-white/5 backdrop-blur-xl shadow-[0_15px_40px_rgba(0,0,0,0.6)]">
-          {/* Stat 1 */}
-          <div className="text-center flex flex-col items-center justify-center md:border-r border-white/5 last:border-0 pr-2 last:pr-0">
-            <span className="text-amber-400 text-xs mb-1">★★★★★</span>
-            <h4 className="text-xl md:text-2xl font-display font-extrabold text-white">
-              <DecimalCounter value={4.8} />+
-            </h4>
-            <p className="text-[9px] font-mono uppercase tracking-widest text-zinc-500 mt-1">Rating</p>
-          </div>
-          {/* Stat 2 */}
-          <div className="text-center flex flex-col items-center justify-center md:border-r border-white/5 last:border-0 pr-2 last:pr-0">
-            <span className="text-brand-turquoise text-xs mb-1">🍀</span>
-            <h4 className="text-xl md:text-2xl font-display font-extrabold text-white">
-              <Counter value={100} />%
-            </h4>
-            <p className="text-[9px] font-mono uppercase tracking-widest text-zinc-500 mt-1">Eggless</p>
-          </div>
-          {/* Stat 3 */}
-          <div className="text-center flex flex-col items-center justify-center md:border-r border-white/5 last:border-0 pr-2 last:pr-0">
-            <span className="text-brand-orange-accent text-xs mb-1">📅</span>
-            <h4 className="text-xl md:text-2xl font-display font-extrabold text-white">
-              <Counter value={2024} />
-            </h4>
-            <p className="text-[9px] font-mono uppercase tracking-widest text-zinc-500 mt-1">Founded</p>
-          </div>
-          {/* Stat 4 */}
-          <div className="text-center flex flex-col items-center justify-center last:border-0">
-            <span className="text-brand-turquoise text-xs mb-1">📍</span>
-            <h4 className="text-xl md:text-2xl font-display font-extrabold text-white">
-              <Counter value={4} />+
-            </h4>
-            <p className="text-[9px] font-mono uppercase tracking-widest text-zinc-500 mt-1">Locations</p>
-          </div>
+      {/* Scroll Indicator */}
+      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 pointer-events-none z-10">
+        <span className="text-[9px] font-sans font-medium uppercase tracking-[0.25em] text-[#FCFBF8]/60">
+          Scroll
+        </span>
+        <div className="w-[1.5px] h-12 bg-white/20 relative overflow-hidden rounded-full">
+          <motion.div 
+            className="absolute top-0 left-0 right-0 h-4 bg-brand-teal rounded-full"
+            animate={{
+              y: [0, 32, 0],
+            }}
+            transition={{
+              duration: 2,
+              repeat: Infinity,
+              ease: "easeInOut",
+            }}
+          />
         </div>
-      </motion.div>
-    </motion.section>
+      </div>
+    </section>
   );
 }

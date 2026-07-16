@@ -1,12 +1,11 @@
 import { useState, lazy, Suspense } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import LoadingScreen from "@/components/LoadingScreen";
-import ParticleBackground from "@/components/ParticleBackground";
 import Navigation from "@/components/Navigation";
 
 const HeroSection = lazy(() => import("@/components/sections/HeroSection"));
 const StatsSection = lazy(() => import("@/components/sections/StatsSection"));
-const ScrollStorySection = lazy(() => import("@/components/sections/ScrollStorySection"));
+const ExperienceSection = lazy(() => import("@/components/sections/ExperienceSection"));
 const SignatureSection = lazy(() => import("@/components/sections/SignatureSection"));
 const JourneySection = lazy(() => import("@/components/sections/JourneySection"));
 const TeamSection = lazy(() => import("@/components/sections/TeamSection"));
@@ -40,15 +39,14 @@ function Index() {
     <>
       {!loaded && <LoadingScreen onComplete={() => setLoaded(true)} />}
       {loaded && (
-        <div className="relative min-h-screen bg-luxury-black noise-overlay">
-          <ParticleBackground />
+        <div className="relative min-h-screen bg-[#FCFBF8] noise-overlay text-[#241914]">
           <Navigation />
 
-          <Suspense fallback={<div className="min-h-screen bg-luxury-black" />}>
+          <Suspense fallback={<div className="min-h-screen bg-[#FCFBF8]" />}>
             <main>
               <HeroSection />
               <StatsSection />
-              <ScrollStorySection />
+              <ExperienceSection />
               <SignatureSection />
               <JourneySection />
               <TeamSection />

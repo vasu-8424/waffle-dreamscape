@@ -1,104 +1,156 @@
-import { useRef, useEffect } from "react";
-import { motion, useInView } from "framer-motion";
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import expClassic from "@/assets/opt-0F0A9310.jpg";
-import expBubble from "@/assets/opt-0F0A9362.jpg";
-import expWich from "@/assets/opt-0F0A9375.jpg";
-import expPolar from "@/assets/opt-0F0A9404.jpg";
-import expSundae from "@/assets/opt-0F0A9406.jpg";
+import { useRef } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { Layers, RotateCcw, Flame, Droplets, Heart } from "lucide-react";
+import imgFlour from "@/assets/opt-0F0A9281.jpg";
+import imgBatter from "@/assets/opt-0F0A9288.jpg";
+import imgPress from "@/assets/opt-0F0A9310.jpg";
+import imgDrizzle from "@/assets/opt-0F0A9362.jpg";
+import imgServe from "@/assets/opt-0F0A9279.jpg";
 
-gsap.registerPlugin(ScrollTrigger);
-
-const waffleTypes = [
-  { name: "Classic Belgian", desc: "The original. Deep pockets, golden crust, timeless perfection.", image: expClassic },
-  { name: "Bubble Waffle", desc: "Crispy spheres that pop with flavour in every bite.", image: expBubble },
-  { name: "Waffy Wich", desc: "Sandwiched indulgence. Two waffles, infinite possibilities.", image: expWich },
-  { name: "Polar Waffle", desc: "Cool, creamy & refreshing. A waffle experience like no other.", image: expPolar },
-  { name: "Bubble Sundae", desc: "Our signature sundae in a bubble waffle bowl.", image: expSundae },
+const steps = [
+  {
+    number: "01",
+    title: "Sifted Flour",
+    desc: "We source custom-milled flour of exceptional quality, double-sifting to achieve an airy structure that defines our signature waffle crumb.",
+    image: imgFlour,
+    icon: Layers,
+  },
+  {
+    number: "02",
+    title: "Silken Batter",
+    desc: "Folded gently by hand with pure organic dairy, our eggless recipe rests at a cooled temperature to slow-mature the flavors.",
+    image: imgBatter,
+    icon: RotateCcw,
+  },
+  {
+    number: "03",
+    title: "Precision Press",
+    desc: "Ladle by ladle, the batter is poured into high-density cast iron grids heated to a precise temperature, baking to a perfect golden brown.",
+    image: imgPress,
+    icon: Flame,
+  },
+  {
+    number: "04",
+    title: "Artisanal Drizzle",
+    desc: "Rich single-origin Belgian chocolate is melted at precise temp and cascaded over the crisp waffle pockets in a fine, elegant drizzle.",
+    image: imgDrizzle,
+    icon: Droplets,
+  },
+  {
+    number: "05",
+    title: "Fresh Presentation",
+    desc: "Presented warm on minimalist stone dishes. We believe desserts should be enjoyed fresh, creating moments of culinary bliss.",
+    image: imgServe,
+    icon: Heart,
+  },
 ];
 
 export default function ExperienceSection() {
-  const sectionRef = useRef<HTMLElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
-  const isInView = useInView(sectionRef, { once: true, margin: "-100px" });
 
-  useEffect(() => {
-    if (!sectionRef.current || !containerRef.current) return;
+  // Scroll tracking for the connecting line drawing animation
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start center", "end center"],
+  });
 
-    const ctx = gsap.context(() => {
-      const scrollWidth = containerRef.current!.scrollWidth - window.innerWidth;
-      gsap.to(containerRef.current, {
-        x: -scrollWidth,
-        ease: "none",
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "top top",
-          end: () => `+=${scrollWidth}`,
-          pin: true,
-          scrub: 1,
-          invalidateOnRefresh: true,
-        },
-      });
-    }, sectionRef);
-
-    return () => ctx.revert();
-  }, []);
+  const pathLength = useTransform(scrollYProgress, [0, 0.95], [0, 1]);
 
   return (
-    <section ref={sectionRef} className="relative h-screen overflow-hidden bg-luxury-black">
-      <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-        <div className="w-[500px] h-[500px] bg-brand-turquoise/5 blur-[120px] rounded-full" />
-      </div>
+    <section 
+      id="experience" 
+      ref={containerRef} 
+      className="relative bg-bg-secondary py-36 px-8 md:px-12 overflow-hidden z-20 border-b border-border"
+    >
+      <div className="max-w-6xl mx-auto relative z-10">
+        
+        {/* Section Header */}
+        <div className="text-center mb-28">
+          <span className="text-[10px] font-sans font-semibold uppercase tracking-[0.4em] text-brand-teal mb-4 block">
+            Craftsmanship
+          </span>
+          <h2 className="text-4xl md:text-6xl font-display font-light text-brown-900 leading-tight tracking-tight">
+            The Experience <span className="font-serif italic text-brand-teal">Process</span>
+          </h2>
+          <p className="text-xs font-sans tracking-widest text-text-muted uppercase mt-4">
+            How we craft perfection, from grain to plate
+          </p>
+        </div>
 
-      <motion.div
-        className="absolute top-12 left-8 z-10"
-        initial={{ opacity: 0, x: -30 }}
-        animate={isInView ? { opacity: 1, x: 0 } : {}}
-        transition={{ duration: 0.8 }}
-      >
-        <span className="text-brand-orange font-mono text-xs uppercase tracking-[0.3em] mb-2 block">
-          The Experience
-        </span>
-        <h2 className="text-4xl md:text-5xl font-display font-bold text-white">
-          Scroll to Explore
-        </h2>
-      </motion.div>
+        {/* Staggered Vertical Process Steps */}
+        <div className="relative">
+          
+          {/* Animated Connecting Line */}
+          <div className="absolute left-[30px] md:left-1/2 top-4 bottom-4 w-[1px] bg-border md:-translate-x-[0.5px] z-0">
+            <motion.div 
+              className="w-full bg-brand-teal origin-top" 
+              style={{ height: "100%", scaleY: pathLength }}
+            />
+          </div>
 
-      <div ref={containerRef} className="flex h-full items-center gap-12 px-8 pt-24">
-        {waffleTypes.map((type, i) => (
-          <motion.div
-            key={type.name}
-            className="flex-shrink-0 w-[80vw] md:w-[50vw] lg:w-[40vw] h-[70vh] relative"
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: i * 0.1 }}
-          >
-            <div className="glass-card rounded-3xl h-full overflow-hidden relative group">
-              <img
-                src={type.image}
-                alt={type.name}
-                className="absolute inset-0 w-full h-full object-cover opacity-40 group-hover:scale-105 transition-transform duration-700"
-                loading="lazy"
-                width={800}
-                height={1000}
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent" />
-              <div className="absolute bottom-0 left-0 right-0 p-10">
-                <span className="text-brand-turquoise font-mono text-xs uppercase tracking-[0.3em] mb-3 block">
-                  0{i + 1}
-                </span>
-                <h3 className="text-3xl md:text-4xl font-display font-bold text-white mb-4">
-                  {type.name}
-                </h3>
-                <p className="text-zinc-300 max-w-md text-lg leading-relaxed">
-                  {type.desc}
-                </p>
-              </div>
-            </div>
-          </motion.div>
-        ))}
+          <div className="space-y-24 md:space-y-36">
+            {steps.map((step, i) => {
+              const isEven = i % 2 === 1;
+              const Icon = step.icon;
+              return (
+                <div 
+                  key={step.number}
+                  className={`relative flex flex-col md:flex-row items-center gap-12 md:gap-20 ${
+                    isEven ? "md:flex-row-reverse" : ""
+                  }`}
+                >
+                  
+                  {/* Step Icon Badge */}
+                  <div className="absolute left-[30px] md:left-1/2 top-6 -translate-x-1/2 z-20 flex items-center justify-center w-12 h-12 rounded-full border border-border bg-surface shadow-sm">
+                    <Icon className="w-4 h-4 text-brand-teal stroke-[1.2]" />
+                  </div>
+
+                  {/* Photo Side */}
+                  <motion.div 
+                    className="w-full md:w-1/2 flex justify-center z-10 pl-16 md:pl-0"
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: "-100px" }}
+                    transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                  >
+                    <div className="w-full max-w-[420px] aspect-[16/11] md:aspect-[3/2] bg-surface overflow-hidden border border-border rounded-[8px] p-2 shadow-sm">
+                      <img
+                        src={step.image}
+                        alt={step.title}
+                        className="w-full h-full object-cover rounded-[6px] grayscale-[20%] hover:grayscale-0 transition-all duration-700 hover:scale-102"
+                        loading="lazy"
+                      />
+                    </div>
+                  </motion.div>
+
+                  {/* Content Side */}
+                  <motion.div 
+                    className="w-full md:w-1/2 flex flex-col justify-center text-left pl-16 md:pl-0"
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: "-100px" }}
+                    transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+                  >
+                    <div className="max-w-md">
+                      <span className="text-3xl md:text-4xl font-display font-light text-brand-teal/40 block mb-2 font-mono">
+                        {step.number}
+                      </span>
+                      <h3 className="text-2xl md:text-3xl font-display font-light text-brown-900 mb-4 tracking-tight">
+                        {step.title}
+                      </h3>
+                      <p className="text-[14px] leading-relaxed text-text-secondary font-sans font-light">
+                        {step.desc}
+                      </p>
+                    </div>
+                  </motion.div>
+
+                </div>
+              );
+            })}
+          </div>
+
+        </div>
+
       </div>
     </section>
   );

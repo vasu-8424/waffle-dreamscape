@@ -16,9 +16,9 @@ export default function LoadingScreen({ onComplete }: { onComplete: () => void }
           }, 400);
           return 100;
         }
-        return prev + Math.random() * 15 + 5;
+        return prev + Math.random() * 20 + 8;
       });
-    }, 120);
+    }, 80);
     return () => clearInterval(interval);
   }, [onComplete]);
 
@@ -26,51 +26,51 @@ export default function LoadingScreen({ onComplete }: { onComplete: () => void }
     <AnimatePresence>
       {visible && (
         <motion.div
-          className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-luxury-black"
+          className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-bg-primary noise-overlay"
           initial={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
         >
-          {/* Glow orbs */}
-          <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-brand-orange/20 blur-[100px] rounded-full animate-glow-pulse" />
-          <div className="absolute bottom-1/4 right-1/4 w-64 h-64 bg-brand-turquoise/20 blur-[100px] rounded-full animate-glow-pulse" style={{ animationDelay: "-4s" }} />
-
-          {/* Logo */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.6 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-            className="relative mb-10 flex flex-col items-center"
-          >
-            {/* Soft glowing background behind the logo */}
-            <div className="absolute inset-0 bg-brand-orange/20 blur-2xl rounded-full scale-75 animate-pulse" />
-            <img
+          {/* Minimal Brand Identifier */}
+          <div className="flex flex-col items-center justify-center">
+            <motion.img
               src="/logo.png"
               alt="Just Waffles Logo"
-              className="relative z-10 w-44 h-44 md:w-56 md:h-56 object-contain drop-shadow-[0_0_40px_rgba(63,182,164,0.35)] animate-float"
+              className="w-28 h-28 md:w-36 md:h-36 object-contain mb-6 animate-float"
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
             />
-          </motion.div>
+            <motion.h1
+              className="text-4xl md:text-5xl font-display font-medium tracking-[0.2em] text-brown-900 select-none"
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+            >
+              JUST <span className="font-light text-brand-orange">WAFFLES</span>
+            </motion.h1>
+            
+            <motion.p
+              className="text-[10px] font-sans font-medium uppercase tracking-[0.4em] text-text-secondary mt-3"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.4, duration: 0.8 }}
+            >
+              Enjoy More
+            </motion.p>
+          </div>
 
-          {/* Tagline */}
-          <motion.p
-            className="text-brand-turquoise font-mono text-sm uppercase tracking-[0.3em] mb-10"
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.5, duration: 0.6 }}
-          >
-            Enjoy More
-          </motion.p>
-
-          {/* Progress bar */}
-          <div className="w-48 h-[2px] bg-white/10 rounded-full overflow-hidden">
+          {/* Clean Thin Progress Bar */}
+          <div className="mt-16 w-32 h-[1px] bg-border relative">
             <motion.div
-              className="h-full bg-brand-orange rounded-full"
+              className="h-full bg-brand-orange"
               initial={{ width: 0 }}
               animate={{ width: `${Math.min(progress, 100)}%` }}
-              transition={{ duration: 0.3, ease: "easeOut" }}
+              transition={{ duration: 0.2, ease: "easeOut" }}
             />
           </div>
-          <p className="text-white/30 font-mono text-[10px] mt-4 uppercase tracking-widest">
+          
+          <p className="text-[10px] font-mono tracking-widest text-text-muted mt-3 uppercase">
             {Math.min(Math.round(progress), 100)}%
           </p>
         </motion.div>

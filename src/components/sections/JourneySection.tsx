@@ -1,14 +1,14 @@
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
-import { Rocket, Store, Star, GraduationCap, PartyPopper, Users } from "lucide-react";
+import { Sparkles, MapPin, Award, Bookmark, ShieldCheck, Heart } from "lucide-react";
 
 const milestones = [
-  { month: "July 2024", title: "Brand Launch", desc: "Just Waffles born in Bengaluru", icon: Rocket },
-  { month: "Aug 2024", title: "Multiple Stores", desc: "Opened in Kammanahalli, Vidyaranyapura & more", icon: Store },
-  { month: "Sep 2024", title: "4.8+ Ratings", desc: "Loved by thousands of customers", icon: Star },
-  { month: "Oct 2024", title: "College Events", desc: "Became the student favourite across campuses", icon: GraduationCap },
-  { month: "Nov 2024", title: "Food Festivals", desc: "Featured at Bengaluru's top food festivals", icon: PartyPopper },
-  { month: "Dec 2024", title: "Growing Community", desc: "Building a tribe of waffle lovers", icon: Users },
+  { month: "July 2024", title: "The Genesis", desc: "Just Waffles is born in Bengaluru, reimagining the gourmet dessert landscape.", icon: Sparkles },
+  { month: "August 2024", title: "Boutique Expansion", desc: "Opening of boutique doors in Kammanahalli, Vidyaranyapura, and Kothanur.", icon: MapPin },
+  { month: "September 2024", title: "Excellence Applauded", desc: "Acquiring a solid 4.8★ consumer score, praised for pure eggless recipe crafts.", icon: Award },
+  { month: "October 2024", title: "Campus Chapters", desc: "Partnering with elite institutions to cater artisanal treats for college occasions.", icon: Bookmark },
+  { month: "November 2024", title: "Festival Spotlights", desc: "Showcasing signature waffle wedges at Bengaluru's premier culinary events.", icon: ShieldCheck },
+  { month: "December 2024", title: "The Waffle Tribe", desc: "Nurturing a growing community of connoisseurs who seek dessert sophistication.", icon: Heart },
 ];
 
 export default function JourneySection() {
@@ -16,59 +16,68 @@ export default function JourneySection() {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section id="journey" className="relative py-32 px-6 overflow-hidden" ref={ref}>
-      <div className="absolute top-1/2 right-0 w-[400px] h-[400px] bg-brand-orange/5 blur-[100px] rounded-full" />
-
-      <div className="max-w-5xl mx-auto">
-        <motion.div
-          className="text-center mb-20"
-          initial={{ opacity: 0, y: 40 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8 }}
-        >
-          <span className="text-brand-turquoise font-mono text-xs uppercase tracking-[0.3em] mb-4 block">
-            Our Journey
+    <section id="journey" className="relative bg-bg-secondary py-36 px-8 md:px-12 overflow-hidden z-20 border-b border-border" ref={ref}>
+      <div className="max-w-4xl mx-auto">
+        
+        {/* Section Header */}
+        <div className="text-center mb-28">
+          <span className="text-[10px] font-sans font-semibold uppercase tracking-[0.4em] text-brand-teal mb-4 block">
+            Our Narrative
           </span>
-          <h2 className="text-4xl md:text-6xl font-display font-bold text-white leading-tight">
-            The <span className="text-brand-orange">Story</span> So Far
+          <h2 className="text-4xl md:text-6xl font-display font-light text-brown-900 leading-tight tracking-tight">
+            The Journey <span className="font-serif italic text-brand-teal">Chronicles</span>
           </h2>
-        </motion.div>
-
-        <div className="relative">
-          {/* Timeline line */}
-          <div className="absolute left-8 md:left-1/2 top-0 bottom-0 w-px bg-white/10 md:-translate-x-px" />
-
-          {milestones.map((milestone, i) => {
-            const isLeft = i % 2 === 0;
-            const Icon = milestone.icon;
-            return (
-              <motion.div
-                key={milestone.title}
-                className={`relative flex items-center gap-8 mb-16 ${isLeft ? "md:flex-row" : "md:flex-row-reverse"}`}
-                initial={{ opacity: 0, y: 30 }}
-                animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ delay: 0.2 + i * 0.15, duration: 0.7 }}
-              >
-                {/* Content */}
-                <div className={`flex-1 ${isLeft ? "md:text-right" : "md:text-left"}`}>
-                  <span className="text-brand-turquoise font-mono text-xs uppercase tracking-[0.2em] mb-2 block">
-                    {milestone.month}
-                  </span>
-                  <h3 className="text-2xl font-display font-bold text-white mb-2">{milestone.title}</h3>
-                  <p className="text-zinc-400 text-sm max-w-xs mx-auto md:mx-0">{milestone.desc}</p>
-                </div>
-
-                {/* Center dot */}
-                <div className="relative z-10 w-16 h-16 glass-card rounded-full flex items-center justify-center flex-shrink-0">
-                  <Icon className={`w-5 h-5 ${i % 2 === 0 ? "text-brand-orange" : "text-brand-turquoise"}`} />
-                </div>
-
-                {/* Spacer for other side */}
-                <div className="flex-1 hidden md:block" />
-              </motion.div>
-            );
-          })}
+          <p className="text-xs font-sans tracking-widest text-text-muted uppercase mt-4">
+            Tracing our pursuit of waffle perfection
+          </p>
         </div>
+
+        {/* Timeline */}
+        <div className="relative">
+          {/* Vertical axis line */}
+          <div className="absolute left-[30px] md:left-1/2 top-4 bottom-4 w-[1px] bg-border" />
+
+          <div className="space-y-16">
+            {milestones.map((milestone, i) => {
+              const isLeft = i % 2 === 0;
+              const Icon = milestone.icon;
+              return (
+                <motion.div
+                  key={milestone.title}
+                  className={`relative flex flex-col md:flex-row items-start md:items-center gap-8 ${
+                    isLeft ? "md:flex-row" : "md:flex-row-reverse"
+                  }`}
+                  initial={{ opacity: 0, y: 25 }}
+                  animate={isInView ? { opacity: 1, y: 0 } : {}}
+                  transition={{ delay: 0.15 + i * 0.1, duration: 0.8 }}
+                >
+                  
+                  {/* Content Block */}
+                  <div className={`w-full md:w-1/2 pl-16 md:pl-0 ${isLeft ? "md:text-right md:pr-12" : "md:text-left md:pl-12"}`}>
+                    <span className="text-xs font-mono font-semibold tracking-widest text-brand-teal uppercase mb-2 block">
+                      {milestone.month}
+                    </span>
+                    <h3 className="text-xl md:text-2xl font-display font-light text-brown-900 mb-2 tracking-tight">
+                      {milestone.title}
+                    </h3>
+                    <p className="text-[13px] leading-relaxed text-text-secondary font-light font-sans max-w-sm ml-0 md:ml-auto md:mr-0">
+                      {milestone.desc}
+                    </p>
+                  </div>
+
+                  {/* Dot/Icon on the line */}
+                  <div className="absolute left-[30px] md:left-1/2 -translate-x-1/2 z-10 flex items-center justify-center w-10 h-10 rounded-full border border-border bg-surface shadow-sm">
+                    <Icon className="w-3.5 h-3.5 text-brand-teal stroke-[1.2]" />
+                  </div>
+
+                  {/* Spacer for other side */}
+                  <div className="w-full md:w-1/2 hidden md:block" />
+                </motion.div>
+              );
+            })}
+          </div>
+        </div>
+
       </div>
     </section>
   );
