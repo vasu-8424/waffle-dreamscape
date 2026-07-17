@@ -1,37 +1,44 @@
 import { useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, Eye } from "lucide-react";
-import gal1 from "@/assets/opt-one.jpg";
-import gal2 from "@/assets/opt-two.jpg";
-import gal3 from "@/assets/opt-three.jpg";
-import gal4 from "@/assets/opt-four.jpg";
-import gal5 from "@/assets/opt-five.jpg";
+import imgPress from "@/assets/opt-0F0A9310.jpg";
+import imgDrizzle from "@/assets/opt-0F0A9362.jpg";
 
 const galleryImages = [
   {
-    src: gal1,
-    alt: "Gourmet eggless Belgian waffle plate",
-    className: "col-span-12 md:col-span-7 aspect-[16/10] md:aspect-[3/2]",
+    src: "/new_images/0F0A9531.jpg",
+    alt: "Premium Red Velvet Waffle Sandwich with White Chocolate Chips",
+    className: "col-span-12 md:col-span-6 lg:col-span-4 aspect-[3/4]",
   },
   {
-    src: gal2,
-    alt: "Delicate cocoa ganache detail work",
-    className: "col-span-12 md:col-span-5 aspect-[4/5] md:mt-20",
+    src: "/new_images/0F0A9503.jpg",
+    alt: "Fresh Strawberry Layered Waffle Sandwich",
+    className: "col-span-12 md:col-span-6 lg:col-span-4 aspect-[4/3] lg:mt-8",
   },
   {
-    src: gal3,
-    alt: "The bubble waffle golden iron press",
-    className: "col-span-12 md:col-span-4 aspect-[4/5]",
+    src: "/new_images/0F0A9536.jpg",
+    alt: "Decadent Chocolate Sprinkle Waffle Sandwich",
+    className: "col-span-12 md:col-span-6 lg:col-span-4 aspect-[3/4]",
   },
   {
-    src: gal4,
-    alt: "Signature waffle wedges with wild toppings",
-    className: "col-span-12 md:col-span-8 aspect-[16/10] md:aspect-[3/2]",
+    src: "/new_images/Screenshot 2025-04-07 090920.jpg",
+    alt: "Delighted Almond Sundae Bubble Waffle Bowl",
+    className: "col-span-12 md:col-span-6 lg:col-span-6 aspect-[16/10] md:aspect-[3/2]",
   },
   {
-    src: gal5,
-    alt: "The curated patisserie plating",
-    className: "col-span-12 aspect-[21/9] md:aspect-[3/1]",
+    src: "/new_images/0F0A9547.jpg",
+    alt: "Oreo Chocolate Waffle Sandwich with Premium Cocoa Scoop",
+    className: "col-span-12 md:col-span-6 lg:col-span-6 aspect-[4/3]",
+  },
+  {
+    src: imgPress,
+    alt: "The precision cast-iron waffle press baking to perfection",
+    className: "col-span-12 md:col-span-6 lg:col-span-5 aspect-[1/1]",
+  },
+  {
+    src: imgDrizzle,
+    alt: "Artisanal chocolate sauce cascading over warm waffle grids",
+    className: "col-span-12 md:col-span-6 lg:col-span-7 aspect-[16/10] md:aspect-[3/2]",
   },
 ];
 
@@ -41,17 +48,17 @@ export default function GallerySection() {
 
   return (
     <section
-      className="bg-bg-primary py-36 px-8 md:px-12 z-20 border-b border-border"
+      className="bg-bg-primary py-20 lg:py-24 px-8 md:px-12 z-20 border-b border-border"
       ref={containerRef}
     >
       <div className="max-w-7xl mx-auto">
         {/* Section Header */}
-        <div className="text-center mb-28">
+        <div className="text-center mb-14 lg:mb-16">
           <span className="text-[10px] font-sans font-semibold uppercase tracking-[0.4em] text-brand-teal mb-4 block">
             Visual Journal
           </span>
-          <h2 className="text-4xl md:text-6xl font-display font-light text-brown-900 leading-tight tracking-tight">
-            Artisanal <span className="font-serif italic text-brand-teal">Gallery</span>
+          <h2 className="text-4xl md:text-6xl font-display font-bold text-black leading-tight tracking-tight">
+            Visual <span className="font-serif italic text-brand-teal">Artistry</span>
           </h2>
           <p className="text-xs font-sans tracking-widest text-text-muted uppercase mt-4">
             A quiet gaze into our gourmet creations
@@ -59,22 +66,18 @@ export default function GallerySection() {
         </div>
 
         {/* Magazine Asymmetrical Layout */}
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-16 items-start">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-8 items-start">
           {galleryImages.map((img, i) => (
-            <motion.div
+            <div
               key={i}
               className={`relative overflow-hidden cursor-pointer group border border-border bg-bg-secondary rounded-[8px] p-2 shadow-sm ${img.className}`}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ delay: i * 0.05, duration: 0.8 }}
               onClick={() => setLightbox(img.src)}
             >
               <div className="w-full h-full overflow-hidden rounded-[6px]">
                 <img
                   src={img.src}
                   alt={img.alt}
-                  className="w-full h-full object-cover transition-transform duration-1000 ease-out group-hover:scale-104 grayscale-[20%] group-hover:grayscale-0 rounded-[6px]"
+                  className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-102 rounded-[6px]"
                   loading="lazy"
                 />
               </div>
@@ -85,7 +88,7 @@ export default function GallerySection() {
                   <Eye className="w-4 h-4 stroke-[1.2]" />
                 </div>
               </div>
-            </motion.div>
+            </div>
           ))}
         </div>
       </div>

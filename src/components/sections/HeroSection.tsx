@@ -50,21 +50,39 @@ export default function HeroSection() {
         <img
           src={heroBg}
           alt="Cinematic gourmet waffle with glossy chocolate drizzle"
-          className="w-full h-full object-cover object-right grayscale-[5%] brightness-[95%]"
+          className="w-full h-full object-cover object-center lg:object-right grayscale-[2%] brightness-[65%] lg:brightness-[45%] opacity-75 lg:opacity-55"
           loading="eager"
         />
       </motion.div>
 
-      {/* Subtle Gradient Overlay for Text Readability */}
+      {/* Premium Gradient Overlay for Text Legibility and Detailing */}
+      <div
+        className="absolute inset-0 z-10 pointer-events-none block lg:hidden"
+        style={{
+          background:
+            "linear-gradient(180deg, rgba(43, 26, 18, 0.6) 0%, rgba(43, 26, 18, 0.3) 50%, rgba(43, 26, 18, 0.75) 100%)",
+        }}
+      />
+
+      {/* Left-to-Right Readability Fade for Titles */}
       <div
         className="absolute inset-0 z-10 pointer-events-none"
         style={{
           background:
-            "linear-gradient(90deg, rgba(0, 0, 0, 0.65) 0%, rgba(0, 0, 0, 0.35) 45%, rgba(0, 0, 0, 0.10) 75%, transparent 100%)",
+            "linear-gradient(90deg, rgba(43, 26, 18, 0.95) 0%, rgba(43, 26, 18, 0.75) 45%, rgba(43, 26, 18, 0.3) 75%, transparent 100%)",
         }}
       />
 
-      <div className="w-full max-w-7xl mx-auto px-8 md:px-12 relative z-20">
+      {/* Top-to-Bottom Readability Fade for Navigation Items */}
+      <div
+        className="absolute inset-0 z-10 pointer-events-none"
+        style={{
+          background:
+            "linear-gradient(180deg, rgba(43, 26, 18, 0.95) 0%, rgba(43, 26, 18, 0) 25%)",
+        }}
+      />
+
+      <div className="w-full max-w-7xl mx-auto px-8 md:px-12 relative z-20 pt-28 lg:pt-36">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
           {/* Left Column (Luxury Content Box) */}
           <motion.div

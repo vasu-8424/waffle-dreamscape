@@ -48,15 +48,15 @@ export default function TestimonialsSection() {
   return (
     <section
       ref={containerRef}
-      className="bg-bg-secondary py-36 px-8 md:px-12 z-20 border-b border-border"
+      className="bg-bg-secondary py-20 lg:py-24 px-8 md:px-12 z-20 border-b border-border"
     >
       <div className="max-w-7xl mx-auto">
         {/* Section Header */}
-        <div className="text-center mb-28">
+        <div className="text-center mb-14 lg:mb-16">
           <span className="text-[10px] font-sans font-semibold uppercase tracking-[0.4em] text-brand-teal mb-4 block">
             Guest Journal
           </span>
-          <h2 className="text-4xl md:text-6xl font-display font-light text-brown-900 leading-tight tracking-tight">
+          <h2 className="text-4xl md:text-6xl font-display font-bold text-black leading-tight tracking-tight">
             Loved by <span className="font-serif italic text-brand-teal">Connoisseurs</span>
           </h2>
           <p className="text-xs font-sans tracking-widest text-text-muted uppercase mt-4">
@@ -108,6 +108,21 @@ export default function TestimonialsSection() {
                 </div>
               </div>
             </motion.div>
+          ))}
+        </div>
+
+        {/* Accolades and Trust Badges Bar */}
+        <div className="mt-16 pt-8 border-t border-border/60 flex flex-wrap justify-center items-center gap-12 lg:gap-20 text-center">
+          {[
+            { value: "4.8★", label: "Swiggy & Zomato Rating" },
+            { value: "10,000+", label: "Happy Waffle Lovers" },
+            { value: "5/5 Stars", label: "Average Google Rating" },
+            { value: "100% Eggless", label: "Artisanal Recipe Crafts" },
+          ].map((acc, i) => (
+            <div key={i} className="flex flex-col items-center">
+              <span className="text-xl lg:text-2xl font-display font-bold text-brand-teal">{acc.value}</span>
+              <span className="text-[10px] font-sans font-semibold tracking-wider text-text-muted uppercase mt-1">{acc.label}</span>
+            </div>
           ))}
         </div>
       </div>

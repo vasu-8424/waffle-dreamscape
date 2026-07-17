@@ -54,18 +54,15 @@ export default function Navigation() {
               e.preventDefault();
               window.scrollTo({ top: 0, behavior: "smooth" });
             }}
-            className={`flex items-center gap-3 text-lg font-medium tracking-[0.12em] font-display transition-colors duration-300 ${
-              scrolled ? "text-brown-900" : "text-[#FCFBF8]"
-            }`}
+            className="flex items-center transition-transform duration-300 hover:scale-105"
           >
             <img
               src="/logo.png"
               alt="Just Waffles Logo"
-              className="h-10 w-10 md:h-12 md:w-12 object-contain"
+              className={`w-auto object-contain filter drop-shadow-md transition-all duration-500 ${
+                scrolled ? "h-10 md:h-12" : "h-20 md:h-28"
+              }`}
             />
-            <span className="hidden sm:inline">
-              JUST <span className="font-light text-brand-orange">WAFFLES</span>
-            </span>
           </a>
 
           {/* Desktop links */}
@@ -74,10 +71,10 @@ export default function Navigation() {
               <button
                 key={link.href}
                 onClick={() => handleClick(link.href)}
-                className={`text-[13px] font-sans font-medium tracking-widest uppercase transition-colors duration-300 relative py-1 group ${
+                className={`text-[13px] font-sans font-bold tracking-widest uppercase transition-colors duration-300 relative py-1 group ${
                   scrolled
-                    ? "text-text-secondary hover:text-brand-orange"
-                    : "text-[#FCFBF8]/80 hover:text-brand-orange"
+                    ? "text-brand-teal-dark hover:text-brand-orange"
+                    : "text-brand-teal hover:text-brand-orange"
                 }`}
               >
                 {link.label}
@@ -122,7 +119,7 @@ export default function Navigation() {
                 <motion.button
                   key={link.href}
                   onClick={() => handleClick(link.href)}
-                  className="text-left text-3xl font-display font-light text-brown-900 hover:text-brand-orange transition-colors tracking-wide"
+                  className="text-left text-3xl font-display font-bold text-brand-teal-dark hover:text-brand-orange transition-colors tracking-wide"
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: i * 0.08 }}

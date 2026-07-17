@@ -32,16 +32,16 @@ export default function TeamSection() {
   return (
     <section
       id="team"
-      className="relative bg-bg-primary py-36 px-8 md:px-12 overflow-hidden z-20 border-b border-border"
+      className="relative bg-bg-primary py-20 lg:py-24 px-8 md:px-12 overflow-hidden z-20 border-b border-border"
       ref={ref}
     >
       <div className="max-w-7xl mx-auto">
         {/* Section Header */}
-        <div className="text-center mb-28">
+        <div className="text-center mb-14 lg:mb-16">
           <span className="text-[10px] font-sans font-semibold uppercase tracking-[0.4em] text-brand-teal mb-4 block">
             Behind the Dreams
           </span>
-          <h2 className="text-4xl md:text-6xl font-display font-light text-brown-900 leading-tight tracking-tight">
+          <h2 className="text-4xl md:text-6xl font-display font-bold text-black leading-tight tracking-tight">
             The Brand <span className="font-serif italic text-brand-teal">Founders</span>
           </h2>
           <p className="text-xs font-sans tracking-widest text-text-muted uppercase mt-4">

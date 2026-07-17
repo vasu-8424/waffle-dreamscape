@@ -1,10 +1,6 @@
 import { useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Star } from "lucide-react";
-import imgAlmond from "@/assets/opt-0F0A9306.jpg";
-import imgBrownie from "@/assets/opt-0F0A9279.jpg";
-import imgBlueberry from "@/assets/opt-0F0A9281.jpg";
-import imgKitkat from "@/assets/opt-0F0A9353.jpg";
 
 const products = [
   {
@@ -12,8 +8,8 @@ const products = [
     name: "Delighted Almond Sundae",
     category: "Signature Bowl",
     desc: "Signature warm bubble waffle served with soft-churned vanilla bean ice cream, toasted sliced almonds, and artisanal sea-salt caramel.",
-    price: "₹219",
-    image: imgAlmond,
+    pairing: "Best paired with: House Caramel Latte, Flat White, or Warm Spiced Chai.",
+    image: "/Delighted Almond Sundae.jpeg",
     ingredients: ["Eggless Batter", "Toasted Almonds", "Vanilla Bean", "Artisanal Caramel"],
     rating: "5.0",
   },
@@ -22,8 +18,8 @@ const products = [
     name: "Brownielicious Waffy Tree",
     category: "Gourmet Wedge",
     desc: "Layers of warm, fudge-rich brownie chunks, crisp waffle wedges, topped with cascaded Belgian dark chocolate ganache.",
-    price: "₹189",
-    image: imgBrownie,
+    pairing: "Best paired with: Espresso Macchiato, Dark Hot Chocolate, or Roasted Cold Brew.",
+    image: "/Brownielicious Waffy Tree.jpeg",
     ingredients: ["Brownie Fudge", "Waffle Wedges", "Belgian Cocoa", "Chocolate Drizzle"],
     rating: "4.9",
   },
@@ -32,8 +28,8 @@ const products = [
     name: "Blueberry Waffy Wich",
     category: "Waffle Sandwich",
     desc: "Plump wild blueberry compote folded into a warm waffle sandwich with sweetened whipped double cream.",
-    price: "₹169",
-    image: imgBlueberry,
+    pairing: "Best paired with: Chamomile Infusion, Classic Cappuccino, or Iced Americano.",
+    image: "/Blueberry Waffy Wich.jpeg",
     ingredients: ["Blueberry Compote", "Sweetened Cream", "Double Sandwich"],
     rating: "4.8",
   },
@@ -42,8 +38,8 @@ const products = [
     name: "Kitkat Wonder Waffy Wich",
     category: "Waffle Sandwich",
     desc: "Crushed crunchy KitKat bar pieces paired with a rich milk chocolate ganache nestled inside a golden waffle sandwich.",
-    price: "₹179",
-    image: imgKitkat,
+    pairing: "Best paired with: Hazelnut Mocha, French Vanilla Latte, or Classic Milk Tea.",
+    image: "/Kitkat Wonder Waffy Wich.jpeg",
     ingredients: ["KitKat Bars", "Milk Ganache", "Golden Sandwich"],
     rating: "4.8",
   },
@@ -57,15 +53,15 @@ export default function SignatureSection() {
     <section
       id="signature"
       ref={containerRef}
-      className="bg-bg-primary py-36 px-8 md:px-12 z-20 border-b border-border"
+      className="bg-bg-primary py-20 lg:py-24 px-8 md:px-12 z-20 border-b border-border"
     >
       <div className="max-w-7xl mx-auto">
         {/* Section Header */}
-        <div className="text-center mb-28">
+        <div className="text-center mb-14 lg:mb-16">
           <span className="text-[10px] font-sans font-semibold uppercase tracking-[0.4em] text-brand-teal mb-4 block">
             The Collection
           </span>
-          <h2 className="text-4xl md:text-6xl font-display font-light text-brown-900 leading-tight tracking-tight">
+          <h2 className="text-4xl md:text-6xl font-display font-bold text-black leading-tight tracking-tight">
             Chef's <span className="font-serif italic text-brand-teal">Signatures</span>
           </h2>
           <p className="text-xs font-sans tracking-widest text-text-muted uppercase mt-4">
@@ -74,7 +70,7 @@ export default function SignatureSection() {
         </div>
 
         {/* 1. Large Asymmetrical Featured Product Showcase */}
-        <div className="mb-32">
+        <div className="mb-20">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
             {/* Left Column: Framed Portrait Product Image */}
             <div className="lg:col-span-7 flex justify-center lg:justify-start">
@@ -108,7 +104,7 @@ export default function SignatureSection() {
                     Featured Masterpiece
                   </span>
 
-                  <h3 className="text-3xl md:text-4xl font-display font-light text-brown-900 leading-tight tracking-tight mb-4">
+                  <h3 className="text-3xl md:text-4xl font-display font-bold text-black leading-tight tracking-tight mb-4">
                     {selectedProduct.name}
                   </h3>
 
@@ -122,12 +118,12 @@ export default function SignatureSection() {
                     </span>
                   </div>
 
-                  <p className="text-[14px] leading-relaxed text-text-secondary font-sans font-light mb-8">
+                  <p className="text-[14px] leading-relaxed text-text-secondary font-sans font-light mb-6">
                     {selectedProduct.desc}
                   </p>
 
                   {/* Ingredient Chips */}
-                  <div className="flex flex-wrap gap-2 mb-10">
+                  <div className="flex flex-wrap gap-2 mb-6">
                     {selectedProduct.ingredients.map((ing) => (
                       <span
                         key={ing}
@@ -138,11 +134,15 @@ export default function SignatureSection() {
                     ))}
                   </div>
 
-                  <div className="flex items-baseline gap-6 pt-6 border-t border-border">
-                    <span className="text-2xl font-display font-light text-brown-900">
-                      {selectedProduct.price}
-                    </span>
+                  {/* Gourmet Pairing */}
+                  <div className="mb-8 text-left">
+                    <span className="text-[10px] font-sans font-bold uppercase tracking-wider text-brand-orange block mb-2">Beverage Pairing Suggestion</span>
+                    <p className="text-[12px] text-text-secondary font-sans font-light bg-bg-secondary p-3 border border-border rounded-[4px]">
+                      {selectedProduct.pairing}
+                    </p>
+                  </div>
 
+                  <div className="flex items-baseline gap-6 pt-6 border-t border-border">
                     <button className="h-[52px] px-8 bg-brand-orange text-white text-xs uppercase tracking-widest font-semibold transition-all duration-300 hover:bg-brand-orange-hover rounded-[8px] cursor-pointer">
                       Add to Basket
                     </button>
@@ -154,19 +154,19 @@ export default function SignatureSection() {
         </div>
 
         {/* 2. Menu Section Grid */}
-        <div id="menu" className="pt-24 border-t border-border">
-          <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
+        <div id="menu" className="pt-16 border-t border-border">
+          <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-6">
             <div className="text-left">
               <span className="text-[10px] font-sans font-semibold uppercase tracking-[0.4em] text-brand-teal mb-3 block">
                 Boutique Patisserie
               </span>
-              <h3 className="text-3xl md:text-4xl font-display font-light text-brown-900 tracking-tight">
+              <h3 className="text-3xl md:text-4xl font-display font-bold text-black tracking-tight">
                 The Gourmet <span className="font-serif italic text-brand-teal">Menu</span>
               </h3>
             </div>
 
             <p className="text-[13px] text-text-secondary font-light font-sans max-w-xs text-left md:text-right">
-              Select any item to feature it above and explore its premium ingredients.
+              Select any item to feature it above and explore its premium ingredients & pairings.
             </p>
           </div>
 
@@ -203,7 +203,7 @@ export default function SignatureSection() {
                       </span>
                     </div>
 
-                    <h4 className="text-lg font-display font-light text-brown-900 mb-2 tracking-tight group-hover:text-brand-orange transition-colors">
+                    <h4 className="text-lg font-display font-bold text-black mb-2 tracking-tight group-hover:text-brand-orange transition-colors">
                       {product.name}
                     </h4>
 
@@ -211,8 +211,7 @@ export default function SignatureSection() {
                       {product.desc}
                     </p>
 
-                    <div className="pt-3 border-t border-border flex justify-between items-center text-xs font-medium uppercase tracking-wider text-brown-900">
-                      <span>{product.price}</span>
+                    <div className="pt-3 border-t border-border flex justify-end items-center text-xs font-medium uppercase tracking-wider text-brown-900">
                       <span className="text-[10px] text-brand-orange opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                         View Details &rarr;
                       </span>

@@ -1,24 +1,22 @@
 import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { Layers, RotateCcw, Flame, Droplets, Heart } from "lucide-react";
-import imgFlour from "@/assets/opt-0F0A9281.jpg";
+import { Layers, RotateCcw, Flame, Droplets, Heart, Sparkles } from "lucide-react";
 import imgBatter from "@/assets/opt-0F0A9288.jpg";
-import imgPress from "@/assets/opt-0F0A9310.jpg";
-import imgDrizzle from "@/assets/opt-0F0A9362.jpg";
-import imgServe from "@/assets/opt-0F0A9279.jpg";
 
 const steps = [
   {
     number: "01",
     title: "Sifted Flour",
     desc: "We source custom-milled flour of exceptional quality, double-sifting to achieve an airy structure that defines our signature waffle crumb.",
-    image: imgFlour,
+    details: "Custom Mill • 00 Fine Standard • Double Aerated",
+    image: "/sifted_flour.png",
     icon: Layers,
   },
   {
     number: "02",
     title: "Silken Batter",
     desc: "Folded gently by hand with pure organic dairy, our eggless recipe rests at a cooled temperature to slow-mature the flavors.",
+    details: "12-Hour Maturation • Organic Dairy • Egg-Free Recipe",
     image: imgBatter,
     icon: RotateCcw,
   },
@@ -26,21 +24,24 @@ const steps = [
     number: "03",
     title: "Precision Press",
     desc: "Ladle by ladle, the batter is poured into high-density cast iron grids heated to a precise temperature, baking to a perfect golden brown.",
-    image: imgPress,
+    details: "195°C Heated Grids • Poured Ladle-by-Ladle • 180s Bake",
+    image: "/three.jpg",
     icon: Flame,
   },
   {
     number: "04",
     title: "Artisanal Drizzle",
     desc: "Rich single-origin Belgian chocolate is melted at precise temp and cascaded over the crisp waffle pockets in a fine, elegant drizzle.",
-    image: imgDrizzle,
+    details: "Belgian Single-Origin • Temperature Tempered • Cascading Coat",
+    image: "/two.jpg",
     icon: Droplets,
   },
   {
     number: "05",
     title: "Fresh Presentation",
     desc: "Presented warm on minimalist stone dishes. We believe desserts should be enjoyed fresh, creating moments of culinary bliss.",
-    image: imgServe,
+    details: "Stone Plating • Served Piping Hot • Garnish-Finished",
+    image: "/five.jpg",
     icon: Heart,
   },
 ];
@@ -60,15 +61,15 @@ export default function ExperienceSection() {
     <section
       id="experience"
       ref={containerRef}
-      className="relative bg-bg-secondary py-36 px-8 md:px-12 overflow-hidden z-20 border-b border-border"
+      className="relative bg-bg-secondary py-20 lg:py-24 px-8 md:px-12 overflow-hidden z-20 border-b border-border"
     >
       <div className="max-w-6xl mx-auto relative z-10">
         {/* Section Header */}
-        <div className="text-center mb-28">
+        <div className="text-center mb-14 lg:mb-16">
           <span className="text-[10px] font-sans font-semibold uppercase tracking-[0.4em] text-brand-teal mb-4 block">
             Craftsmanship
           </span>
-          <h2 className="text-4xl md:text-6xl font-display font-light text-brown-900 leading-tight tracking-tight">
+          <h2 className="text-4xl md:text-6xl font-display font-bold text-black leading-tight tracking-tight">
             The Experience <span className="font-serif italic text-brand-teal">Process</span>
           </h2>
           <p className="text-xs font-sans tracking-widest text-text-muted uppercase mt-4">
@@ -86,7 +87,7 @@ export default function ExperienceSection() {
             />
           </div>
 
-          <div className="space-y-24 md:space-y-36">
+          <div className="space-y-16 md:space-y-24">
             {steps.map((step, i) => {
               const isEven = i % 2 === 1;
               const Icon = step.icon;
@@ -132,17 +133,34 @@ export default function ExperienceSection() {
                       <span className="text-3xl md:text-4xl font-display font-light text-brand-teal/40 block mb-2 font-mono">
                         {step.number}
                       </span>
-                      <h3 className="text-2xl md:text-3xl font-display font-light text-brown-900 mb-4 tracking-tight">
+                      <h3 className="text-2xl md:text-3xl font-display font-bold text-black mb-4 tracking-tight">
                         {step.title}
                       </h3>
-                      <p className="text-[14px] leading-relaxed text-text-secondary font-sans font-light">
+                      <p className="text-[14px] leading-relaxed text-text-secondary font-sans font-light mb-4">
                         {step.desc}
                       </p>
+                      {/* Tech Details Badge */}
+                      <span className="inline-block px-3 py-1 bg-surface border border-border rounded-[4px] text-[11px] font-sans font-semibold tracking-wide text-brand-teal">
+                        {step.details}
+                      </span>
                     </div>
                   </motion.div>
                 </div>
               );
             })}
+          </div>
+        </div>
+
+        {/* Chef's Secret Tip Banner */}
+        <div className="mt-20 p-6 bg-surface border border-border rounded-[8px] max-w-3xl mx-auto flex items-start gap-4 shadow-sm text-left relative z-10">
+          <div className="p-2 bg-brand-orange/10 rounded-[6px] text-brand-orange mt-0.5">
+            <Sparkles className="w-4 h-4" />
+          </div>
+          <div>
+            <h4 className="text-[12px] font-sans font-bold uppercase tracking-wider text-brown-900 mb-1">Chef's Secret Tip</h4>
+            <p className="text-[12px] leading-relaxed text-text-secondary font-sans font-light">
+              A slow-maturing cold batter fermentation of 12 hours yields the perfect waffle crispiness without losing internal moisture. Always ensure the iron press is precisely at 195°C before pouring.
+            </p>
           </div>
         </div>
       </div>

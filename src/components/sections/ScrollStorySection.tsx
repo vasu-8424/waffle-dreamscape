@@ -1,17 +1,13 @@
 import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
-import imgFlour from "@/assets/opt-0F0A9281.jpg";
 import imgBatter from "@/assets/opt-0F0A9288.jpg";
-import imgPress from "@/assets/opt-0F0A9310.jpg";
-import imgDrizzle from "@/assets/opt-0F0A9362.jpg";
-import imgServe from "@/assets/opt-0F0A9279.jpg";
 
 const stages = [
   {
     title: "Flour",
     subtitle: "Premium quality flour, sifted to perfection",
     color: "#5c4731",
-    image: imgFlour,
+    image: "/sifted_flour.png",
   },
   {
     title: "Batter",
@@ -23,19 +19,19 @@ const stages = [
     title: "Press",
     subtitle: "Golden grids form in the hot iron",
     color: "#3FB6A4",
-    image: imgPress,
+    image: "/three.jpg",
   },
   {
     title: "Drizzle",
     subtitle: "Rich chocolate cascades over the warm surface",
     color: "#423724",
-    image: imgDrizzle,
+    image: "/two.jpg",
   },
   {
     title: "Serve",
     subtitle: "Crafted fresh. Served warm. Enjoyed more.",
     color: "#2FA69A",
-    image: imgServe,
+    image: "/five.jpg",
   },
 ];
 
