@@ -39,7 +39,7 @@ export default function HeroSection() {
   return (
     <section
       ref={containerRef}
-      className="relative h-screen w-full flex items-center bg-[#2B1A12] overflow-hidden z-20"
+      className="relative min-h-screen w-full flex items-center bg-[#2B1A12] overflow-hidden z-20"
     >
       {/* Premium Gradient Overlay for Text Legibility and Detailing */}
       <div
@@ -68,7 +68,7 @@ export default function HeroSection() {
         }}
       />
 
-      <div className="w-full max-w-7xl mx-auto px-8 md:px-12 relative z-20 pt-28 lg:pt-36">
+      <div className="w-full max-w-[1400px] mx-auto px-8 md:px-12 relative z-20">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
           {/* Left Column (Luxury Content Box) */}
           <motion.div
