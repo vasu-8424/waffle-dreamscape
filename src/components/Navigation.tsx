@@ -193,7 +193,7 @@ export default function Navigation() {
     <>
       <motion.nav
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-          scrolled ? "bg-bg-primary border-b border-border py-3" : "bg-transparent py-4"
+          scrolled ? "bg-bg-primary border-b border-border py-3 shadow-sm" : "bg-transparent py-6"
         }`}
         initial={{ y: -100 }}
         animate={{ y: 0 }}
@@ -201,7 +201,7 @@ export default function Navigation() {
       >
         <div className="max-w-7xl mx-auto px-8 md:px-12 flex justify-between items-center">
           {/* Logo */}
-          
+          <a
             href="#"
             onClick={(e) => {
               e.preventDefault();
@@ -234,7 +234,7 @@ export default function Navigation() {
                 <span className="absolute bottom-0 left-0 w-0 h-[1.5px] bg-brand-orange group-hover:w-full transition-all duration-300 ease-out" />
               </button>
             ))}
-            
+            <a
               href="https://wa.me/919980773895"
               target="_blank"
               rel="noopener noreferrer"
@@ -288,7 +288,7 @@ export default function Navigation() {
               transition={{ delay: 0.4 }}
             >
               <div className="h-px bg-border" />
-              
+              <a
                 href="https://wa.me/919980773895"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -304,3 +304,4 @@ export default function Navigation() {
     </>
   );
 }
+
