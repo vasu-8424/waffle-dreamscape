@@ -257,7 +257,7 @@ export default function FooterSection() {
 
             {/* Social Icons (Outline) */}
             <div className="flex gap-4">
-              
+              <a
                 href="https://www.instagram.com/justwaffles_enjoymore?igsh=MXZwN3V6bDVkNTk0OA=="
                 target="_blank"
                 rel="noopener noreferrer"
@@ -280,7 +280,7 @@ export default function FooterSection() {
                   <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
                 </svg>
               </a>
-              
+              <a
                 href="https://www.facebook.com/share/18nYrz5vDp/"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -312,7 +312,7 @@ export default function FooterSection() {
             <ul className="space-y-3.5 text-left">
               {quickLinks.map((link) => (
                 <li key={link.label}>
-                  
+                  <a
                     href={link.href}
                     onClick={(e) => {
                       if (link.href !== "#") {
@@ -407,7 +407,7 @@ export default function FooterSection() {
           <div className="flex items-center gap-6">
             <p className="text-[11px] font-mono text-text-muted tracking-wider flex items-center gap-1.5">
               Developed By{" "}
-              
+              <a
                 href="https://staffarc.in"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -435,3 +435,4 @@ export default function FooterSection() {
     </footer>
   );
 }
+
