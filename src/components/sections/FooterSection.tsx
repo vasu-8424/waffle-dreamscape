@@ -126,7 +126,7 @@ export default function FooterSection() {
           {/* Column 3: Contact Details */}
           <div className="lg:col-span-3 flex flex-col items-start">
             <h4 className="text-[10px] font-sans font-semibold uppercase tracking-[0.25em] text-brand-teal mb-6">
-              Boutique Info
+              Store Info
             </h4>
             <div className="space-y-3.5 text-left text-[13px] text-text-secondary font-sans font-light">
               <p className="font-mono text-brown-900">+91 99807 73895</p>

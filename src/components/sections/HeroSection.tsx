@@ -1,6 +1,5 @@
 import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
-import heroBg from "@/assets/opt-one.jpg";
 
 const containerVariants = {
   hidden: {},
@@ -42,19 +41,6 @@ export default function HeroSection() {
       ref={containerRef}
       className="relative h-screen w-full flex items-center bg-[#2B1A12] overflow-hidden z-20"
     >
-      {/* 8K Cinematic Background Image Container */}
-      <motion.div
-        className="absolute inset-0 w-full h-full z-0 select-none pointer-events-none"
-        style={{ scale, y: yTranslate }}
-      >
-        <img
-          src={heroBg}
-          alt="Cinematic gourmet waffle with glossy chocolate drizzle"
-          className="w-full h-full object-cover object-center lg:object-right grayscale-[2%] brightness-[65%] lg:brightness-[45%] opacity-75 lg:opacity-55"
-          loading="eager"
-        />
-      </motion.div>
-
       {/* Premium Gradient Overlay for Text Legibility and Detailing */}
       <div
         className="absolute inset-0 z-10 pointer-events-none block lg:hidden"
@@ -91,29 +77,14 @@ export default function HeroSection() {
             initial="hidden"
             animate="visible"
           >
-            {/* Eyebrow */}
-            <motion.span
-              className="text-[9px] font-sans font-bold uppercase tracking-[0.6em] text-brand-teal mb-6 block"
-              variants={fadeUpVariants}
-            >
-              ESTABLISHED • BENGALURU • 2024
-            </motion.span>
-
-            {/* Headline (Serif 90-110px desktop, White, 1 Teal highlight word) */}
-            <h1 className="font-display font-light text-5xl sm:text-7xl md:text-8xl lg:text-[90px] xl:text-[105px] text-[#FCFBF8] tracking-tight leading-[0.95] mb-8 select-none">
-              <motion.span className="block" variants={fadeUpVariants}>
-                Where
-              </motion.span>
-              <motion.span className="block" variants={fadeUpVariants}>
-                Every Waffle
-              </motion.span>
-              <motion.span
-                className="block font-serif italic text-brand-teal"
-                variants={fadeUpVariants}
-              >
-                Becomes Art.
-              </motion.span>
-            </h1>
+            <motion.div className="mb-8 select-none" variants={fadeUpVariants}>
+              <img
+                src="/logo.png"
+                alt="Just Waffles Logo"
+                className="w-[min(78vw,28rem)] sm:w-[min(64vw,34rem)] lg:w-[min(56vw,38rem)] h-auto object-contain"
+                loading="eager"
+              />
+            </motion.div>
 
             {/* Description (max 3 lines, light warm cream) */}
             <motion.p
@@ -146,7 +117,7 @@ export default function HeroSection() {
                 }}
                 className="h-14 px-8 bg-transparent text-white border border-white text-xs uppercase tracking-widest font-semibold transition-all duration-300 hover:bg-white hover:text-brown-900 rounded-[8px] cursor-pointer"
               >
-                Find Boutique
+                Find Us
               </button>
             </motion.div>
           </motion.div>

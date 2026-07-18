@@ -73,8 +73,8 @@ export default function Navigation() {
                 onClick={() => handleClick(link.href)}
                 className={`text-[13px] font-sans font-bold tracking-widest uppercase transition-colors duration-300 relative py-1 group ${
                   scrolled
-                    ? "text-brand-teal-dark hover:text-brand-orange"
-                    : "text-brand-teal hover:text-brand-orange"
+                    ? "text-brand-orange-dark hover:text-brand-orange"
+                    : "text-brand-orange hover:text-brand-orange-dark"
                 }`}
               >
                 {link.label}
@@ -119,7 +119,7 @@ export default function Navigation() {
                 <motion.button
                   key={link.href}
                   onClick={() => handleClick(link.href)}
-                  className="text-left text-3xl font-display font-bold text-brand-teal-dark hover:text-brand-orange transition-colors tracking-wide"
+                  className="text-left text-3xl font-display font-bold text-brand-orange-dark hover:text-brand-orange transition-colors tracking-wide"
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: i * 0.08 }}

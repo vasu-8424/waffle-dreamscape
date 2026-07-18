@@ -14,13 +14,13 @@ const teamMembers = [
   {
     name: "Venkatesh Kovuru",
     role: "Co-Founder",
-    desc: "A professional tax consultant having previously served at Deloitte and PwC. Venkatesh leads boutique operations, franchise licensing systems, and supply chain logistics to guarantee premium service.",
+    desc: "A professional tax consultant having previously served at Deloitte and PwC. Venkatesh leads store operations, franchise licensing systems, and supply chain logistics to guarantee premium service.",
     image: venkatImg,
   },
   {
     name: "Vinod Achuthan",
     role: "Co-Promoter & Advisor",
-    desc: "An engineer and serial investor with extensive operations in F&B. Vinod operates multiple franchised boutique locations and guides brand development, corporate advisory boards, and expansion strategies.",
+    desc: "An engineer and serial investor with extensive operations in F&B. Vinod operates multiple franchised store locations and guides brand development, corporate advisory boards, and expansion strategies.",
     image: vinodImg,
   },
 ];
@@ -45,7 +45,7 @@ export default function TeamSection() {
             The Brand <span className="font-serif italic text-brand-teal">Founders</span>
           </h2>
           <p className="text-xs font-sans tracking-widest text-text-muted uppercase mt-4">
-            Meet the pioneers crafting Bengaluru's premium waffle boutique
+            Meet the pioneers crafting Bengaluru's premium waffle brand
           </p>
         </div>
 

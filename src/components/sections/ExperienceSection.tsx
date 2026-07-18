@@ -1,7 +1,6 @@
 import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { Layers, RotateCcw, Flame, Droplets, Heart, Sparkles } from "lucide-react";
-import imgBatter from "@/assets/opt-0F0A9288.jpg";
+import { Layers, RotateCcw, Flame, Droplets, Heart } from "lucide-react";
 
 const steps = [
   {
@@ -17,7 +16,7 @@ const steps = [
     title: "Silken Batter",
     desc: "Folded gently by hand with pure organic dairy, our eggless recipe rests at a cooled temperature to slow-mature the flavors.",
     details: "12-Hour Maturation • Organic Dairy • Egg-Free Recipe",
-    image: imgBatter,
+    image: "/new_images/silken-batter.jpg.png",
     icon: RotateCcw,
   },
   {
@@ -25,7 +24,7 @@ const steps = [
     title: "Precision Press",
     desc: "Ladle by ladle, the batter is poured into high-density cast iron grids heated to a precise temperature, baking to a perfect golden brown.",
     details: "195°C Heated Grids • Poured Ladle-by-Ladle • 180s Bake",
-    image: "/three.jpg",
+    image: "/new_images/precision-press.jpg",
     icon: Flame,
   },
   {
@@ -33,7 +32,7 @@ const steps = [
     title: "Artisanal Drizzle",
     desc: "Rich single-origin Belgian chocolate is melted at precise temp and cascaded over the crisp waffle pockets in a fine, elegant drizzle.",
     details: "Belgian Single-Origin • Temperature Tempered • Cascading Coat",
-    image: "/two.jpg",
+    image: "/new_images/artisinal-design.jpg",
     icon: Droplets,
   },
   {
@@ -41,7 +40,7 @@ const steps = [
     title: "Fresh Presentation",
     desc: "Presented warm on minimalist stone dishes. We believe desserts should be enjoyed fresh, creating moments of culinary bliss.",
     details: "Stone Plating • Served Piping Hot • Garnish-Finished",
-    image: "/five.jpg",
+    image: "/new_images/fresh-presentation.jpg",
     icon: Heart,
   },
 ];
@@ -151,18 +150,6 @@ export default function ExperienceSection() {
           </div>
         </div>
 
-        {/* Chef's Secret Tip Banner */}
-        <div className="mt-20 p-6 bg-surface border border-border rounded-[8px] max-w-3xl mx-auto flex items-start gap-4 shadow-sm text-left relative z-10">
-          <div className="p-2 bg-brand-orange/10 rounded-[6px] text-brand-orange mt-0.5">
-            <Sparkles className="w-4 h-4" />
-          </div>
-          <div>
-            <h4 className="text-[12px] font-sans font-bold uppercase tracking-wider text-brown-900 mb-1">Chef's Secret Tip</h4>
-            <p className="text-[12px] leading-relaxed text-text-secondary font-sans font-light">
-              A slow-maturing cold batter fermentation of 12 hours yields the perfect waffle crispiness without losing internal moisture. Always ensure the iron press is precisely at 195°C before pouring.
-            </p>
-          </div>
-        </div>
       </div>
     </section>
   );

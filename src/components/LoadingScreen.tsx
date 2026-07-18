@@ -57,14 +57,6 @@ export default function LoadingScreen({ onComplete }: { onComplete: () => void }
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
             />
-            <motion.h1
-              className="text-4xl md:text-5xl font-display font-medium tracking-[0.2em] text-brown-900 select-none"
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-            >
-              JUST <span className="font-light text-brand-orange">WAFFLES</span>
-            </motion.h1>
 
             <motion.p
               className="text-[10px] font-sans font-medium uppercase tracking-[0.4em] text-text-secondary mt-3"

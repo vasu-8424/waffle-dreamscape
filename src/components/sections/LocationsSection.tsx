@@ -5,7 +5,7 @@ import { MapPin, Phone, Compass, Clock, Check } from "lucide-react";
 const locations = [
   {
     id: "kammanahalli",
-    name: "Kammanahalli Boutique",
+    name: "Kammanahalli Store",
     address:
       "No.1188, Ground Floor, 1st Cross, Ramamurthy St, Keerthi Layout, St Thomas Town Post, Kammanahalli, Bengaluru, Karnataka 560084",
     phone: "9980773895",
@@ -13,21 +13,21 @@ const locations = [
   },
   {
     id: "vidyaranyapura",
-    name: "Vidyaranyapura Boutique",
+    name: "Vidyaranyapura Store",
     address: "Vidyaranyapura Main Road, Vidyaranyapura, Bengaluru, Karnataka 560097",
     phone: "9980773895",
     timing: "11:00 AM – 12:00 AM",
   },
   {
     id: "kothanur",
-    name: "Kothanur Boutique",
+    name: "Kothanur Store",
     address: "Kothanur Main Road, near Kothanur Police Station, Bengaluru, Karnataka 560077",
     phone: "9980773895",
     timing: "11:00 AM – 12:00 AM",
   },
   {
     id: "kr-puram",
-    name: "KR Puram Boutique",
+    name: "KR Puram Store",
     address: "KR Puram near Railway Station, Bengaluru, Karnataka 560036",
     phone: "9980773895",
     timing: "11:00 AM – 12:00 AM",
@@ -49,7 +49,7 @@ export default function LocationsSection() {
         {/* Section Header */}
         <div className="text-center mb-14 lg:mb-16">
           <span className="text-[10px] font-sans font-semibold uppercase tracking-[0.4em] text-brand-teal mb-4 block">
-            Boutique Locator
+            Store Locator
           </span>
           <h2 className="text-4xl md:text-6xl font-display font-bold text-black leading-tight tracking-tight">
             Our <span className="font-serif italic text-brand-teal">Locations</span>

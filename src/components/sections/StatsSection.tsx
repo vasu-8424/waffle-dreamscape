@@ -17,13 +17,13 @@ const stats = [
   },
   {
     value: "2024",
-    label: "Boutique Founded",
+    label: "Founded",
     desc: "Crafting dessert dreams in Bengaluru",
     icon: Calendar,
   },
   {
     value: "4+",
-    label: "Boutique Stores",
+    label: "Stores",
     desc: "Serving fresh warm grids daily",
     icon: MapPin,
   },

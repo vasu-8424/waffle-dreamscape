@@ -32,9 +32,9 @@
   --color-brown-900: var(--brown-900);
   --color-brown-800: var(--brown-800);
   --color-brown-700: var(--brown-700);
-  --color-brand-orange: var(--orange-600);
-  --color-brand-orange-hover: var(--orange-700);
-  --color-brand-orange-dark: var(--orange-800);
+  --color-brand-orange: var(--teal-500);
+  --color-brand-orange-hover: var(--teal-600);
+  --color-brand-orange-dark: var(--teal-700);
   --color-brand-teal: var(--teal-500);
   --color-brand-teal-hover: var(--teal-600);
   --color-brand-teal-dark: var(--teal-700);
@@ -58,13 +58,13 @@
   --brown-800: #4A2D18;
   --brown-700: #5B3821;
 
-  --orange-600: #F97316;
-  --orange-700: #EA580C;
-  --orange-800: #C2410C;
+  --orange-600: #00B7A8;
+  --orange-700: #009B90;
+  --orange-800: #007A71;
 
-  --teal-500: #41BDB5;
-  --teal-600: #2FA89F;
-  --teal-700: #238D86;
+  --teal-500: #00B7A8;
+  --teal-600: #009B90;
+  --teal-700: #007A71;
 
   --bg-primary: #FCFBF8;
   --bg-secondary: #F7F5F2;
@@ -86,8 +86,8 @@
   --popover: var(--surface);
   --popover-foreground: var(--text-primary);
   
-  --primary: var(--brown-900);
-  --primary-foreground: var(--bg-primary);
+  --primary: var(--teal-500);
+  --primary-foreground: #ffffff;
   
   --secondary: var(--bg-secondary);
   --secondary-foreground: var(--text-primary);
@@ -95,11 +95,11 @@
   --muted: var(--bg-secondary);
   --muted-foreground: var(--text-secondary);
   
-  --accent: var(--orange-600);
-  --accent-foreground: var(--surface);
+  --accent: var(--teal-500);
+  --accent-foreground: #ffffff;
   
   --input: var(--border);
-  --ring: var(--orange-600);
+  --ring: var(--teal-500);
   
   --font-display: "Cormorant Garamond", serif;
   --font-sans: "Inter", system-ui, sans-serif;

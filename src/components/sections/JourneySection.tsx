@@ -11,8 +11,8 @@ const milestones = [
   },
   {
     month: "August 2024",
-    title: "Boutique Expansion",
-    desc: "Opening of boutique doors in Kammanahalli, Vidyaranyapura, and Kothanur.",
+    title: "Store Expansion",
+    desc: "Opening of new store doors in Kammanahalli, Vidyaranyapura, and Kothanur.",
     icon: MapPin,
   },
   {

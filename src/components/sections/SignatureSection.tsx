@@ -5,11 +5,11 @@ import { Star } from "lucide-react";
 const products = [
   {
     id: "almond-sundae",
-    name: "Delighted Almond Sundae",
+    name: "KitKat Sundae",
     category: "Signature Bowl",
     desc: "Signature warm bubble waffle served with soft-churned vanilla bean ice cream, toasted sliced almonds, and artisanal sea-salt caramel.",
     pairing: "Best paired with: House Caramel Latte, Flat White, or Warm Spiced Chai.",
-    image: "/Delighted Almond Sundae.jpeg",
+    image: "/new_images/kitkat-sundae.jpg",
     ingredients: ["Eggless Batter", "Toasted Almonds", "Vanilla Bean", "Artisanal Caramel"],
     rating: "5.0",
   },
@@ -34,13 +34,12 @@ const products = [
     rating: "4.8",
   },
   {
-    id: "kitkat",
-    name: "Kitkat Wonder Waffy Wich",
-    category: "Waffle Sandwich",
-    desc: "Crushed crunchy KitKat bar pieces paired with a rich milk chocolate ganache nestled inside a golden waffle sandwich.",
-    pairing: "Best paired with: Hazelnut Mocha, French Vanilla Latte, or Classic Milk Tea.",
-    image: "/Kitkat Wonder Waffy Wich.jpeg",
-    ingredients: ["KitKat Bars", "Milk Ganache", "Golden Sandwich"],
+    id: "chocolate-fountain",
+    name: "Chocolate Fountain",
+    category: "Signature Bowl",
+    desc: "Just Waffles Exclusive Chocolate Fountain Waffy Tree",
+    image: "/new_images/chocolate-fountain.jpg",
+    ingredients: ["Chocolate Cascade", "Waffy Tree", "Exclusive Dessert"],
     rating: "4.8",
   },
 ];
@@ -134,14 +133,6 @@ export default function SignatureSection() {
                     ))}
                   </div>
 
-                  {/* Gourmet Pairing */}
-                  <div className="mb-8 text-left">
-                    <span className="text-[10px] font-sans font-bold uppercase tracking-wider text-brand-orange block mb-2">Beverage Pairing Suggestion</span>
-                    <p className="text-[12px] text-text-secondary font-sans font-light bg-bg-secondary p-3 border border-border rounded-[4px]">
-                      {selectedProduct.pairing}
-                    </p>
-                  </div>
-
                   <div className="flex items-baseline gap-6 pt-6 border-t border-border">
                     <button className="h-[52px] px-8 bg-brand-orange text-white text-xs uppercase tracking-widest font-semibold transition-all duration-300 hover:bg-brand-orange-hover rounded-[8px] cursor-pointer">
                       Add to Basket
@@ -158,7 +149,7 @@ export default function SignatureSection() {
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-6">
             <div className="text-left">
               <span className="text-[10px] font-sans font-semibold uppercase tracking-[0.4em] text-brand-teal mb-3 block">
-                Boutique Patisserie
+                Patisserie
               </span>
               <h3 className="text-3xl md:text-4xl font-display font-bold text-black tracking-tight">
                 The Gourmet <span className="font-serif italic text-brand-teal">Menu</span>
